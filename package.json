@@ -1,0 +1,19 @@
+{
+  "name": "glb-auto-trade-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file=.env src/index.js",
+    "start": "node --env-file=.env src/index.js",
+    "db:seed": "node --env-file=.env src/seed.js",
+    "db:reset": "node --env-file=.env src/seed.js --reset"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  }
+}
