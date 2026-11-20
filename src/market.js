@@ -1,7 +1,8 @@
 import { query, queryOne } from './db.js'
 
 const DAY = 24 * 60 * 60 * 1000
-const DELAY = Number(process.env.MARKET_DELAY) || 1000
+const DELAY = Number(process.env.MARKET_DELAY) || 400
+const STALE = 6 * 60 * 1000
 const MIN_LISTINGS = 3
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
@@ -15,7 +16,7 @@ const clean = (text) => String(text || '').trim().toUpperCase()
 
 async function getText(url) {
   await wait(DELAY)
-  const response = await fetch(url, { headers: HEADERS })
+  const response = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(`${new URL(url).host} cavabı: ${response.status}`)
   return response.text()
 }
@@ -146,9 +147,18 @@ async function saveStatus(value) {
   )
 }
 
-export async function marketStatus() {
+async function storedStatus() {
   const row = await queryOne("select value from settings where key = 'market_sync'")
-  return { enabled: true, lastRun: '', results: [], ...(row ? row.value : {}), running }
+  return { enabled: true, lastRun: '', results: [], startedAt: '', ...(row ? row.value : {}) }
+}
+
+function isRunning(status) {
+  return running || Boolean(status.startedAt && Date.now() - new Date(status.startedAt).getTime() < STALE)
+}
+
+export async function marketStatus() {
+  const status = await storedStatus()
+  return { ...status, running: isRunning(status) }
 }
 
 export async function setMarketSync(enabled) {
@@ -157,8 +167,10 @@ export async function setMarketSync(enabled) {
 }
 
 export async function syncMarketPrices() {
-  if (running) return false
+  const before = await storedStatus()
+  if (isRunning(before)) return false
   running = true
+  await saveStatus({ ...before, startedAt: new Date().toISOString() })
 
   const tariffs = await queryOne("select value from settings where key = 'tariffs'")
   const rates = { azn: Number(tariffs?.value?.aznRate) || 1.7 }
@@ -189,8 +201,8 @@ export async function syncMarketPrices() {
     }
   } finally {
     running = false
-    const previous = await marketStatus()
-    await saveStatus({ enabled: previous.enabled !== false, lastRun: new Date().toISOString(), results })
+    const previous = await storedStatus()
+    await saveStatus({ enabled: previous.enabled !== false, lastRun: new Date().toISOString(), startedAt: '', results })
   }
   return true
 }

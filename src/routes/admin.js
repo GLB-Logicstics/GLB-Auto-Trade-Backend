@@ -4,7 +4,7 @@ import { checkPassword, createToken, hashPassword, PERMISSIONS, readToken } from
 import { collections, findCollection, settingKeys, slugify, toAdminItem } from '../collections.js'
 import { query, queryOne } from '../db.js'
 import { config } from '../config.js'
-import { marketStatus, setMarketSync, startMarketSync } from '../market.js'
+import { marketStatus, setMarketSync, startMarketSync, syncMarketPrices } from '../market.js'
 import { saveUpload } from '../upload.js'
 
 export const adminRoutes = Router()
@@ -285,10 +285,14 @@ adminRoutes.get('/market-sync', can('pricing'), async (req, res) => {
 })
 
 adminRoutes.post('/market-sync', can('pricing'), async (req, res) => {
-  const started = startMarketSync()
-  if (!started) return res.status(409).json({ message: 'Yeniləmə artıq gedir' })
+  if ((await marketStatus()).running) return res.status(409).json({ message: 'Yeniləmə artıq gedir' })
 
   await audit(req, 'update', 'market_prices', '', 'Bazar qiymətləri yenilənir')
+  if (config.serverless) {
+    await syncMarketPrices()
+    return res.json({ ok: true, done: true, status: await marketStatus() })
+  }
+  startMarketSync()
   res.json({ ok: true })
 })
 
