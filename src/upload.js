@@ -29,6 +29,16 @@ export async function saveUpload(req, res) {
   const type = extname(name).toLowerCase()
   if (!IMAGE_TYPES.includes(type) || !data) return res.status(400).json({ message: 'Yalnız şəkil faylı yükləmək olar' })
 
+  if (config.blobToken) {
+    const { put } = await import('@vercel/blob')
+    const base64 = String(data).replace(/^data:[^;]+;base64,/, '')
+    const blob = await put(`glb/${randomUUID()}${type}`, Buffer.from(base64, 'base64'), {
+      access: 'public',
+      token: config.blobToken,
+    })
+    return res.status(201).json({ url: blob.url })
+  }
+
   if (config.cloudinaryUrl) {
     return res.status(201).json({ url: await uploadToCloudinary(String(data)) })
   }

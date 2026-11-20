@@ -15,7 +15,10 @@ app.use('/uploads', express.static(config.uploadsDir))
 app.get('/api/health', (req, res) => res.json({ ok: true }))
 
 app.get('/api/cron/market', async (req, res) => {
-  if (!config.cronSecret || req.headers.authorization !== `Bearer ${config.cronSecret}`) {
+  const fromCron = config.cronSecret
+    ? req.headers.authorization === `Bearer ${config.cronSecret}`
+    : String(req.headers['user-agent'] || '').startsWith('vercel-cron')
+  if (!fromCron) {
     return res.status(401).json({ message: 'İcazə yoxdur' })
   }
   await syncMarketPrices()

@@ -1,3 +1,9 @@
+# Deploy: Vercel + Neon
+
+Ən sadə yol: Vercel layihəsində **Storage → Create Database → Neon** və **Storage → Blob**. Vercel `DATABASE_URL` və `BLOB_READ_WRITE_TOKEN`-u özü yazır. Build zamanı `npm run vercel-build` boş bazaya cədvəlləri və başlanğıc məlumatı yazır (dolu bazaya toxunmur). Admin üçün `ADMIN_EMAIL` və `ADMIN_PASSWORD` (Secret) əlavə et. `TOKEN_SECRET` yazılmasa bazanın ünvanından avtomatik yaranır.
+
+Aşağıdakı addımlar əl ilə (Neon və Cloudinary hesabı ilə) qurmaq üçündür.
+
 # Deploy: Vercel + Neon + Cloudinary
 
 Hər üç layihə Vercel-də, baza Neon-da, şəkillər Cloudinary-də. Hamısı pulsuz plandır. Repolar gizli qalır, saytlar yalnız linki bilənlərə açıqdır (axtarış sistemləri indeksləmir).
