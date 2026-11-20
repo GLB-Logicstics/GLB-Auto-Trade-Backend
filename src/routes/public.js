@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { readToken } from '../auth.js'
-import { collections, findCollection, toItem } from '../collections.js'
+import { publicCollections, toItem } from '../collections.js'
 import { query, queryOne } from '../db.js'
 
 export const publicRoutes = Router()
@@ -41,11 +41,12 @@ async function translationsMap() {
 
 publicRoutes.get('/bootstrap', async (req, res) => {
   const result = {}
-  for (const name of Object.keys(collections)) {
+  for (const name of publicCollections) {
     result[name] = await activeItems(name)
   }
 
   result.settings = await settingsMap()
+  delete result.settings.market_sync
   result.shipping = await shippingMap()
   result.languages = await query(
     'select code, name, is_default as "isDefault" from languages where is_active order by sort_order, code',
@@ -58,8 +59,24 @@ publicRoutes.get('/bootstrap', async (req, res) => {
 })
 
 publicRoutes.get('/collections/:name', async (req, res) => {
-  if (!findCollection(req.params.name)) return res.status(404).json({ message: 'Bölmə tapılmadı' })
+  if (!publicCollections.includes(req.params.name)) return res.status(404).json({ message: 'Bölmə tapılmadı' })
   res.json(await activeItems(req.params.name))
+})
+
+publicRoutes.get('/tracking', async (req, res) => {
+  const code = String(req.query.code || '').trim().toUpperCase()
+  if (code.length < 5) return res.status(400).json({ message: 'VIN və ya lot nömrəsini yazın' })
+
+  const row = await queryOne(
+    `select data from shipments
+     where is_active and (upper(data->>'code') = $1 or upper(data->>'lot') = $1)
+     limit 1`,
+    [code],
+  )
+  if (!row) return res.status(404).json({ message: 'Tapılmadı' })
+
+  const { code: vin, lot, title, steps } = row.data
+  res.json({ code: vin, lot, title, steps: steps || [] })
 })
 
 publicRoutes.post('/requests', async (req, res) => {

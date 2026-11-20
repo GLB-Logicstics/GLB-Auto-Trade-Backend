@@ -22,7 +22,12 @@ function publicUser(row) {
 }
 
 userRoutes.post('/register', async (req, res) => {
-  const { name = '', email = '', phone = '', password = '', company = '' } = req.body || {}
+  const site = await queryOne("select value from settings where key = 'site'")
+  if (!site || !site.value.registrationOpen) {
+    return res.status(403).json({ message: 'Qeydiyyat bağlıdır. Hesab almaq üçün bizimlə əlaqə saxlayın' })
+  }
+
+  const { name = '', email = '', phone = '', password = '' } = req.body || {}
   const cleanEmail = String(email).trim().toLowerCase()
 
   if (!String(name).trim()) return res.status(400).json({ message: 'Adınızı yazın' })
@@ -32,20 +37,9 @@ userRoutes.post('/register', async (req, res) => {
   const exists = await queryOne('select id from users where email = $1', [cleanEmail])
   if (exists) return res.status(409).json({ message: 'Bu e-poçt artıq qeydiyyatdan keçib' })
 
-  const isDealer = Boolean(String(company).trim())
   const row = await queryOne(
-    `insert into users (name, email, phone, password_hash, role, company, dealer_status)
-     values ($1, $2, $3, $4, $5, $6, $7)
-     returning *`,
-    [
-      String(name).trim().slice(0, 100),
-      cleanEmail,
-      String(phone).trim().slice(0, 30),
-      hashPassword(password),
-      isDealer ? 'dealer' : 'user',
-      String(company).trim().slice(0, 100),
-      isDealer ? 'pending' : '',
-    ],
+    `insert into users (name, email, phone, password_hash) values ($1, $2, $3, $4) returning *`,
+    [String(name).trim().slice(0, 100), cleanEmail, String(phone).trim().slice(0, 30), hashPassword(password)],
   )
 
   res.status(201).json({ token: createToken('user', row), user: publicUser(row) })

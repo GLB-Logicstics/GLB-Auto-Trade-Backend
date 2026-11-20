@@ -217,3 +217,16 @@ create table if not exists market_prices (
   updated_at timestamptz not null default now(),
   unique (country, make, model, year)
 );
+
+create table if not exists shipments (
+  id serial primary key,
+  slug text unique,
+  title text not null default '',
+  is_active boolean not null default true,
+  sort_order integer not null default 0,
+  data jsonb not null default '{}',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table admins alter column role set default 'admin';

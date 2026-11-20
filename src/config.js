@@ -6,6 +6,7 @@ export const config = {
   tokenSecret: process.env.TOKEN_SECRET || 'dev-secret',
   corsOrigins: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : true,
   publicUrl: process.env.PUBLIC_URL || `http://localhost:${process.env.PORT || 4000}`,
+  marketSync: process.env.MARKET_SYNC !== 'off',
   githubRepo: process.env.GITHUB_REPO || '',
   githubToken: process.env.GITHUB_TOKEN || '',
   uploadsDir: fileURLToPath(new URL('../uploads', import.meta.url)),

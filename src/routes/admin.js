@@ -4,6 +4,7 @@ import { checkPassword, createToken, hashPassword, PERMISSIONS, readToken } from
 import { collections, findCollection, settingKeys, slugify, toAdminItem } from '../collections.js'
 import { query, queryOne } from '../db.js'
 import { config } from '../config.js'
+import { marketStatus, setMarketSync, startMarketSync } from '../market.js'
 import { saveUpload } from '../upload.js'
 
 export const adminRoutes = Router()
@@ -169,7 +170,7 @@ adminRoutes.delete('/collections/:name/:id', can('content'), async (req, res) =>
   res.json(row)
 })
 
-const SETTING_AREAS = { tariffs: 'pricing' }
+const SETTING_AREAS = { tariffs: 'pricing', menus: 'menus' }
 
 adminRoutes.get('/settings', async (req, res) => {
   res.json(await query('select key, value, updated_at from settings order by key'))
@@ -279,40 +280,21 @@ adminRoutes.get('/market-prices', can('pricing'), async (req, res) => {
   res.json(rows)
 })
 
-async function saveMarketPrice(item) {
-  const make = String(item.make || '').trim().toUpperCase()
-  const model = String(item.model || '').trim().toUpperCase()
-  const year = Number(item.year)
-  const price = Number(item.price)
-  const country = item.country === 'geo' ? 'geo' : 'aze'
-  if (!make || !model || !Number.isInteger(year) || !Number.isFinite(price) || price < 0) return null
-
-  return queryOne(
-    `insert into market_prices (country, make, model, year, price, source) values ($1, $2, $3, $4, $5, $6)
-     on conflict (country, make, model, year)
-     do update set price = excluded.price, source = excluded.source, updated_at = now()
-     returning id, country, make, model, year, price::float as price, source, updated_at`,
-    [country, make, model, year, price, String(item.source || '').trim()],
-  )
-}
-
-adminRoutes.post('/market-prices', can('pricing'), async (req, res) => {
-  const row = await saveMarketPrice(req.body || {})
-  if (!row) return res.status(400).json({ message: 'Marka, model, il və qiymət düzgün olmalıdır' })
-
-  await audit(req, 'update', 'market_prices', row.id, `${row.make} ${row.model} ${row.year}: $${row.price}`)
-  res.status(201).json(row)
+adminRoutes.get('/market-sync', can('pricing'), async (req, res) => {
+  res.json(await marketStatus())
 })
 
-adminRoutes.post('/market-prices/import', can('pricing'), async (req, res) => {
-  const rows = Array.isArray(req.body?.rows) ? req.body.rows : []
-  let saved = 0
-  for (const item of rows) {
-    if (await saveMarketPrice(item)) saved++
-  }
+adminRoutes.post('/market-sync', can('pricing'), async (req, res) => {
+  const started = startMarketSync()
+  if (!started) return res.status(409).json({ message: 'Yeniləmə artıq gedir' })
 
-  await audit(req, 'import', 'market_prices', '', `${saved} sətir`)
-  res.json({ saved, skipped: rows.length - saved })
+  await audit(req, 'update', 'market_prices', '', 'Bazar qiymətləri yenilənir')
+  res.json({ ok: true })
+})
+
+adminRoutes.put('/market-sync', can('pricing'), async (req, res) => {
+  await setMarketSync(req.body?.enabled)
+  res.json(await marketStatus())
 })
 
 adminRoutes.delete('/market-prices/:id', can('pricing'), async (req, res) => {
@@ -380,6 +362,41 @@ adminRoutes.get('/users', can('users'), async (req, res) => {
   res.json(rows)
 })
 
+adminRoutes.post('/users', can('users'), async (req, res) => {
+  const { name = '', email = '', phone = '', password = '', role = 'user', company = '' } = req.body || {}
+  if (!String(name).trim() || !String(email).includes('@') || String(password).length < 6 || !['user', 'dealer'].includes(role)) {
+    return res.status(400).json({ message: 'Ad, e-poçt və ən azı 6 simvollu şifrə mütləqdir' })
+  }
+
+  const row = await queryOne(
+    `insert into users (name, email, phone, password_hash, role, company, dealer_status)
+     values ($1, $2, $3, $4, $5, $6, $7)
+     returning id, name, email, phone, role, company, dealer_status, is_blocked, created_at`,
+    [
+      String(name).trim(),
+      String(email).trim().toLowerCase(),
+      String(phone).trim(),
+      hashPassword(password),
+      role,
+      String(company).trim(),
+      role === 'dealer' ? 'approved' : '',
+    ],
+  )
+  await audit(req, 'create', 'users', row.id, `${row.email} (${row.role})`)
+  res.status(201).json({ ...row, requests: 0, cars: 0 })
+})
+
+adminRoutes.put('/users/:id/password', can('users'), async (req, res) => {
+  const password = String(req.body?.password || '')
+  if (password.length < 6) return res.status(400).json({ message: 'Şifrə ən azı 6 simvol olmalıdır' })
+
+  const row = await queryOne('update users set password_hash = $1 where id = $2 returning id, email', [hashPassword(password), req.params.id])
+  if (!row) return res.status(404).json({ message: 'Tapılmadı' })
+
+  await audit(req, 'update', 'users', row.id, `${row.email}: şifrə dəyişdi`)
+  res.json({ ok: true })
+})
+
 adminRoutes.get('/users/:id/requests', can('users'), async (req, res) => {
   res.json(await query('select * from requests where user_id = $1 order by created_at desc', [req.params.id]))
 })
@@ -413,7 +430,7 @@ adminRoutes.get('/languages', async (req, res) => {
   res.json(await query('select * from languages order by sort_order, code'))
 })
 
-adminRoutes.post('/languages', can('translations'), async (req, res) => {
+adminRoutes.post('/languages', can('languages'), async (req, res) => {
   const code = String(req.body?.code || '').trim().toLowerCase()
   const name = String(req.body?.name || '').trim()
   if (!/^[a-z]{2,5}$/.test(code) || !name) return res.status(400).json({ message: 'Kod (məs. tr) və ad mütləqdir' })
@@ -428,7 +445,7 @@ adminRoutes.post('/languages', can('translations'), async (req, res) => {
   res.status(201).json(row)
 })
 
-adminRoutes.put('/languages/:code', can('translations'), async (req, res) => {
+adminRoutes.put('/languages/:code', can('languages'), async (req, res) => {
   const { name = '', isActive = true, sortOrder = 0 } = req.body || {}
   const row = await queryOne(
     `update languages set name = $1, is_active = $2 or is_default, sort_order = $3 where code = $4 returning *`,
@@ -440,7 +457,7 @@ adminRoutes.put('/languages/:code', can('translations'), async (req, res) => {
   res.json(row)
 })
 
-adminRoutes.delete('/languages/:code', can('translations'), async (req, res) => {
+adminRoutes.delete('/languages/:code', can('languages'), async (req, res) => {
   const row = await queryOne('delete from languages where code = $1 and not is_default returning code', [req.params.code])
   if (!row) return res.status(400).json({ message: 'Əsas dili silmək olmaz' })
 
@@ -485,13 +502,31 @@ adminRoutes.delete('/translations', can('translations'), async (req, res) => {
   res.json({ key })
 })
 
+function isDeveloper(req) {
+  return req.admin.role === 'developer'
+}
+
+function allowedRoles(req) {
+  return isDeveloper(req) ? ROLES : ROLES.filter((role) => role !== 'developer')
+}
+
+async function protectDeveloper(req, res, id) {
+  const target = await queryOne('select role from admins where id = $1', [id])
+  if (target && target.role === 'developer' && !isDeveloper(req)) {
+    res.status(403).json({ message: 'Developer hesabını yalnız developer dəyişə bilər' })
+    return true
+  }
+  return false
+}
+
 adminRoutes.get('/admins', can('admins'), async (req, res) => {
-  res.json(await query('select id, name, email, role, is_active, created_at from admins order by id'))
+  const rows = await query('select id, name, email, role, is_active, created_at from admins order by id')
+  res.json(isDeveloper(req) ? rows : rows.filter((row) => row.role !== 'developer'))
 })
 
 adminRoutes.post('/admins', can('admins'), async (req, res) => {
   const { name = '', email = '', password = '', role = 'editor' } = req.body || {}
-  if (!String(name).trim() || !String(email).includes('@') || String(password).length < 6 || !ROLES.includes(role)) {
+  if (!String(name).trim() || !String(email).includes('@') || String(password).length < 6 || !allowedRoles(req).includes(role)) {
     return res.status(400).json({ message: 'Ad, e-poçt, rol və ən azı 6 simvollu şifrə mütləqdir' })
   }
 
@@ -506,8 +541,9 @@ adminRoutes.post('/admins', can('admins'), async (req, res) => {
 
 adminRoutes.put('/admins/:id', can('admins'), async (req, res) => {
   const { name = '', role = 'editor', isActive = true, password = '' } = req.body || {}
-  if (!ROLES.includes(role)) return res.status(400).json({ message: 'Rol yanlışdır' })
-  if (Number(req.params.id) === req.admin.id && (role !== 'admin' || !isActive)) {
+  if (!allowedRoles(req).includes(role)) return res.status(400).json({ message: 'Rol yanlışdır' })
+  if (await protectDeveloper(req, res, req.params.id)) return
+  if (Number(req.params.id) === req.admin.id && (role !== req.admin.role || !isActive)) {
     return res.status(400).json({ message: 'Öz rolunuzu dəyişə və ya özünüzü deaktiv edə bilməzsiniz' })
   }
 
@@ -528,6 +564,7 @@ adminRoutes.put('/admins/:id', can('admins'), async (req, res) => {
 
 adminRoutes.delete('/admins/:id', can('admins'), async (req, res) => {
   if (Number(req.params.id) === req.admin.id) return res.status(400).json({ message: 'Özünüzü silə bilməzsiniz' })
+  if (await protectDeveloper(req, res, req.params.id)) return
 
   const row = await queryOne('delete from admins where id = $1 returning id, email', [req.params.id])
   if (!row) return res.status(404).json({ message: 'Tapılmadı' })

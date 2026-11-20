@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 import { config } from './config.js'
+import { scheduleMarketSync } from './market.js'
 import { adminRoutes } from './routes/admin.js'
 import { publicRoutes } from './routes/public.js'
 import { userRoutes } from './routes/user.js'
@@ -28,4 +29,5 @@ app.use((error, req, res, next) => {
 
 app.listen(config.port, () => {
   console.log(`GLB API: http://localhost:${config.port}`)
+  if (config.marketSync) scheduleMarketSync()
 })

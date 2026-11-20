@@ -70,7 +70,8 @@ Digər cədvəllər:
 
 | Rol | Bölmələr |
 |---|---|
-| admin | hamısı |
+| developer | hamısı + menyular, dillər (`.env`-dəki admin bu roldadır) |
+| admin | menyu və dillərdən başqa hamısı, developer hesablarını görmür |
 | manager | idarə paneli, müraciətlər, istifadəçilər, kontent, qiymətlər |
 | editor | idarə paneli, kontent, sayt ayarları, tərcümələr |
 
@@ -80,7 +81,7 @@ Digər cədvəllər:
 
 | Metod | Ünvan | Nə edir |
 |---|---|---|
-| POST | `/register` | `{ name, email, phone, password, company? }` — `company` varsa diler kimi (təsdiq gözləyir) |
+| POST | `/register` | `{ name, email, phone, password }` — yalnız admin paneldə "Saytda qeydiyyat" açıqdırsa. Diler hesablarını admin yaradır (`POST /api/admin/users`) |
 | POST | `/login` | `{ email, password }` → `{ token, user }` |
 | GET/PUT | `/me` | Profil |
 | PUT | `/password` | `{ current, next }` |
@@ -133,3 +134,13 @@ Render, Railway və ya VPS:
 5. `npm install && npm run db:seed && npm start`
 
 Yüklənən şəkillər `uploads/` qovluğunda saxlanılır. Render kimi disk saxlamayan hostinqdə daimi disk qoşmaq və ya S3/Cloudinary-yə keçmək lazımdır.
+
+## Yerli bazar qiymətləri (avtomatik)
+
+`src/market.js` kataloqdakı və satışdakı hər marka/model/il üçün turbo.az (Azərbaycan) və myauto.ge (Gürcüstan) elanlarına baxır, ən azı 3 elan varsa median qiyməti `market_prices`-ə yazır. Server işləyəndə gündə bir dəfə özü işləyir, admin paneldə "İndi yenilə" düyməsi də var. Söndürmək üçün `.env`: `MARKET_SYNC=off`.
+
+Saytların HTML/API quruluşu dəyişsə, xəta admin paneldə "Tapılmayanlar" siyahısında görünür — onda `src/market.js`-də həmin mənbənin `prices()` funksiyasını yeniləmək lazımdır.
+
+## Avtomobil izləmə
+
+`shipments` kolleksiyası (admin paneldə "Avtomobil izləmə"). Sayt `GET /api/public/tracking?code=VIN_və_ya_LOT` ilə yalnız bir avtomobili alır, siyahı açıq deyil.

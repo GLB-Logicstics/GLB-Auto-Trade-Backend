@@ -3,8 +3,11 @@ import { config } from './config.js'
 
 const TOKEN_DAYS = 7
 
+const ADMIN_AREAS = ['dashboard', 'requests', 'users', 'content', 'pricing', 'settings', 'translations', 'admins', 'audit']
+
 export const PERMISSIONS = {
-  admin: ['dashboard', 'requests', 'users', 'content', 'pricing', 'settings', 'translations', 'admins', 'audit'],
+  developer: [...ADMIN_AREAS, 'menus', 'languages', 'developer'],
+  admin: ADMIN_AREAS,
   manager: ['dashboard', 'requests', 'users', 'content', 'pricing'],
   editor: ['dashboard', 'content', 'settings', 'translations'],
 }

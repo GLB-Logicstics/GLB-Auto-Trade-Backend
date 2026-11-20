@@ -74,7 +74,7 @@ try {
 
   const email = (process.env.ADMIN_EMAIL || 'admin@glb.az').toLowerCase()
   await client.query(
-    'insert into admins (name, email, password_hash) values ($1, $2, $3) on conflict (email) do nothing',
+    "insert into admins (name, email, password_hash, role) values ($1, $2, $3, 'developer') on conflict (email) do nothing",
     [process.env.ADMIN_NAME || 'Admin', email, hashPassword(process.env.ADMIN_PASSWORD || 'admin123')],
   )
 

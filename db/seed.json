@@ -2493,6 +2493,46 @@
         "value": "wheels",
         "icon": "bi-circle"
       }
+    ],
+    "shipments": [
+      {
+        "id": 1,
+        "code": "5UXJU4C05M9F12366",
+        "lot": "72166236",
+        "title": "2021 BMW X5",
+        "steps": [
+          {
+            "title": "Hərracda alındı",
+            "date": "02.11.2026",
+            "done": true
+          },
+          {
+            "title": "Meydançadan götürüldü",
+            "date": "05.11.2026",
+            "done": true
+          },
+          {
+            "title": "Konteynerə yükləndi",
+            "date": "09.11.2026",
+            "done": true
+          },
+          {
+            "title": "Dəniz yolunda",
+            "date": "12.11.2026",
+            "done": false
+          },
+          {
+            "title": "Poti limanı",
+            "date": "Gözlənilir",
+            "done": false
+          },
+          {
+            "title": "Bakıya çatdırıldı",
+            "date": "Gözlənilir",
+            "done": false
+          }
+        ]
+      }
     ]
   },
   "settings": {
@@ -2552,7 +2592,8 @@
         "ru": {
           "about": "GLB Logistics берёт на себя покупку, доставку и растаможку авто с аукционов США. Получите автомобиль под ключ в Азербайджане — быстро, надёжно и без доплат."
         }
-      }
+      },
+      "registrationOpen": false
     },
     "tariffs": {
       "aznRate": 1.7,
@@ -3158,42 +3199,6 @@
         }
       ]
     },
-    "tracking_sample": {
-      "code": "5UXJU4C05M9F12366",
-      "title": "2021 BMW X5",
-      "steps": [
-        {
-          "title": "Hərracda alındı",
-          "date": "02.11.2026",
-          "done": true
-        },
-        {
-          "title": "Meydançadan götürüldü",
-          "date": "05.11.2026",
-          "done": true
-        },
-        {
-          "title": "Konteynerə yükləndi",
-          "date": "09.11.2026",
-          "done": true
-        },
-        {
-          "title": "Dəniz yolunda",
-          "date": "12.11.2026",
-          "done": false
-        },
-        {
-          "title": "Poti limanı",
-          "date": "Gözlənilir",
-          "done": false
-        },
-        {
-          "title": "Bakıya çatdırıldı",
-          "date": "Gözlənilir",
-          "done": false
-        }
-      ]
-    },
     "locations": {
       "aze": [
         "Bakı",
@@ -3366,6 +3371,11 @@
           "to": "/privacy"
         }
       ]
+    },
+    "market_sync": {
+      "enabled": true,
+      "lastRun": "",
+      "results": []
     }
   },
   "shipping": [

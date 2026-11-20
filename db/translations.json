@@ -2050,5 +2050,53 @@
  "Profil — GLB Logistics": {
   "en": "Profile — GLB Logistics",
   "ru": "Профиль — GLB Logistics"
+ },
+ "Hesabları GLB Logistics komandası yaradır. Bizə yazın — e-poçt və şifrənizi göndərək.": {
+  "en": "Accounts are created by the GLB Logistics team. Message us and we'll send your email and password.",
+  "ru": "Аккаунты создаёт команда GLB Logistics. Напишите нам — мы пришлём e-mail и пароль."
+ },
+ "Diler hesabını GLB Logistics yaradır. Aşağıdakı formu göndərin — hesab məlumatlarınızı sizə göndərək, sonra avtomobillərinizi özünüz əlavə edib klikləri izləyəcəksiniz.": {
+  "en": "Dealer accounts are created by GLB Logistics. Send the form below and we'll send your login details; then you can add your cars and track clicks yourself.",
+  "ru": "Дилерский аккаунт создаёт GLB Logistics. Отправьте форму ниже — мы пришлём данные для входа, затем вы сами добавите авто и будете видеть клики."
+ },
+ "Diler kabinetinə daxil ol": {
+  "en": "Sign in to dealer cabinet",
+  "ru": "Войти в кабинет дилера"
+ },
+ "Qeydiyyat bağlıdır. Hesab almaq üçün bizimlə əlaqə saxlayın": {
+  "en": "Registration is closed. Contact us to get an account",
+  "ru": "Регистрация закрыта. Свяжитесь с нами, чтобы получить аккаунт"
+ },
+ "Gözlənilir": {
+  "en": "Expected",
+  "ru": "Ожидается"
+ },
+ "Hərracda alındı": {
+  "en": "Bought at auction",
+  "ru": "Куплен на аукционе"
+ },
+ "Meydançadan götürüldü": {
+  "en": "Picked up from the yard",
+  "ru": "Забран с площадки"
+ },
+ "Konteynerə yükləndi": {
+  "en": "Loaded into container",
+  "ru": "Загружен в контейнер"
+ },
+ "Dəniz yolunda": {
+  "en": "At sea",
+  "ru": "В пути по морю"
+ },
+ "Poti limanı": {
+  "en": "Poti port",
+  "ru": "Порт Поти"
+ },
+ "Bakıya çatdırıldı": {
+  "en": "Delivered to Baku",
+  "ru": "Доставлен в Баку"
+ },
+ "VIN və ya lot nömrəsini yazın": {
+  "en": "Enter the VIN or lot number",
+  "ru": "Введите VIN или номер лота"
  }
 }

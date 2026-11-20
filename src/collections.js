@@ -10,9 +10,12 @@ export const collections = {
   hero_slides: { label: 'Ana səhifə slayderi', title: (item) => item.title },
   brands: { label: 'Markalar', title: (item) => item.name },
   part_types: { label: 'Hissə kateqoriyaları', title: (item) => item.label },
+  shipments: { label: 'Avtomobil izləmə', title: (item) => `${item.code} ${item.title}`, private: true },
 }
 
-export const settingKeys = ['site', 'tariffs', 'price_history', 'tracking_sample', 'menus', 'locations']
+export const publicCollections = Object.keys(collections).filter((name) => !collections[name].private)
+
+export const settingKeys = ['site', 'tariffs', 'price_history', 'menus', 'locations', 'market_sync']
 
 export function findCollection(name) {
   return Object.hasOwn(collections, name) ? collections[name] : null

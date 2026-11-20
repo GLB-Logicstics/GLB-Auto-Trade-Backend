@@ -11,8 +11,8 @@ if (!email || !password) {
 
 try {
     const result = await pool.query(
-        `insert into admins (name, email, password_hash, role, is_active) values ($1, $2, $3, 'admin', true)
-     on conflict (email) do update set password_hash = excluded.password_hash, role = 'admin', is_active = true
+        `insert into admins (name, email, password_hash, role, is_active) values ($1, $2, $3, 'developer', true)
+     on conflict (email) do update set password_hash = excluded.password_hash, role = 'developer', is_active = true
      returning id, email`,
         [process.env.ADMIN_NAME || 'Admin', email, hashPassword(password)],
     )
