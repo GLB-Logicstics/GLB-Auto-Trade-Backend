@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { readToken } from '../auth.js'
 import { collections, findCollection, toItem } from '../collections.js'
 import { query, queryOne } from '../db.js'
 
@@ -24,6 +25,20 @@ async function settingsMap() {
   return Object.fromEntries(rows.map((row) => [row.key, row.value]))
 }
 
+async function translationsMap() {
+  const rows = await query(
+    `select t.lang, t.key, t.value
+     from translations t join languages l on l.code = t.lang
+     where l.is_active and t.value <> ''`,
+  )
+  const map = {}
+  for (const row of rows) {
+    map[row.lang] = map[row.lang] || {}
+    map[row.lang][row.key] = row.value
+  }
+  return map
+}
+
 publicRoutes.get('/bootstrap', async (req, res) => {
   const result = {}
   for (const name of Object.keys(collections)) {
@@ -32,6 +47,13 @@ publicRoutes.get('/bootstrap', async (req, res) => {
 
   result.settings = await settingsMap()
   result.shipping = await shippingMap()
+  result.languages = await query(
+    'select code, name, is_default as "isDefault" from languages where is_active order by sort_order, code',
+  )
+  result.translations = await translationsMap()
+  result.marketPrices = await query(
+    'select country, make, model, year, price::float as price from market_prices order by make, model, year',
+  )
   res.json(result)
 })
 
@@ -42,13 +64,31 @@ publicRoutes.get('/collections/:name', async (req, res) => {
 
 publicRoutes.post('/requests', async (req, res) => {
   const { subject = '', name = '', phone = '', email = '', message = '' } = req.body || {}
-  if (!name.trim() || !phone.trim()) return res.status(400).json({ message: 'Ad və telefon mütləqdir' })
+  if (!String(name).trim() || !String(phone).trim()) return res.status(400).json({ message: 'Ad və telefon mütləqdir' })
 
+  const user = readToken(req, 'user')
   const row = await queryOne(
-    `insert into requests (subject, name, phone, email, message)
-     values ($1, $2, $3, $4, $5)
+    `insert into requests (subject, name, phone, email, message, user_id)
+     values ($1, $2, $3, $4, $5, $6)
      returning id, created_at`,
-    [subject, name.trim(), phone.trim(), email.trim(), message.trim()],
+    [
+      String(subject).slice(0, 200),
+      String(name).trim().slice(0, 100),
+      String(phone).trim().slice(0, 30),
+      String(email).trim().slice(0, 100),
+      String(message).trim().slice(0, 2000),
+      user ? user.id : null,
+    ],
   )
   res.status(201).json(row)
+})
+
+publicRoutes.post('/clicks', async (req, res) => {
+  const carId = Number(req.body?.carId)
+  const type = req.body?.type === 'phone' ? 'phone' : 'whatsapp'
+  const car = await queryOne('select id from cars where id = $1', [carId])
+  if (!car) return res.status(404).json({ message: 'Tapılmadı' })
+
+  await query('insert into car_clicks (car_id, type) values ($1, $2) returning id', [carId, type])
+  res.status(201).json({ ok: true })
 })

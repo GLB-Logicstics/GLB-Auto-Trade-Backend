@@ -6,14 +6,27 @@ import { pool } from './db.js'
 const reset = process.argv.includes('--reset')
 const schema = await readFile(new URL('../db/schema.sql', import.meta.url), 'utf8')
 const seed = JSON.parse(await readFile(new URL('../db/seed.json', import.meta.url), 'utf8'))
-const tables = [...Object.keys(collections), 'settings', 'shipping_prices', 'requests', 'admins']
+const translations = JSON.parse(await readFile(new URL('../db/translations.json', import.meta.url), 'utf8'))
+const tables = [
+  'car_clicks',
+  'audit_logs',
+  'translations',
+  'languages',
+  'market_prices',
+  'requests',
+  ...Object.keys(collections),
+  'users',
+  'settings',
+  'shipping_prices',
+  'admins',
+]
 
 const client = await pool.connect()
 
 try {
   await client.query('begin')
 
-  if (reset) await client.query(`drop table if exists ${tables.join(', ')}`)
+  if (reset) await client.query(`drop table if exists ${tables.join(', ')} cascade`)
   await client.query(schema)
 
   for (const [name, collection] of Object.entries(collections)) {
@@ -41,6 +54,22 @@ try {
       'insert into shipping_prices (auction, location, price) values ($1, $2, $3) on conflict (auction, location) do nothing',
       [row.auction, row.location, row.price],
     )
+  }
+
+  for (const [index, language] of seed.languages.entries()) {
+    await client.query(
+      'insert into languages (code, name, is_default, sort_order) values ($1, $2, $3, $4) on conflict (code) do nothing',
+      [language.code, language.name, Boolean(language.isDefault), index],
+    )
+  }
+
+  for (const [key, values] of Object.entries(translations)) {
+    for (const [lang, value] of Object.entries(values)) {
+      await client.query(
+        'insert into translations (key, lang, value) values ($1, $2, $3) on conflict (key, lang) do nothing',
+        [key, lang, value],
+      )
+    }
   }
 
   const email = (process.env.ADMIN_EMAIL || 'admin@glb.az').toLowerCase()

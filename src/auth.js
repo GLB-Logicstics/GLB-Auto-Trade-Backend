@@ -3,6 +3,12 @@ import { config } from './config.js'
 
 const TOKEN_DAYS = 7
 
+export const PERMISSIONS = {
+  admin: ['dashboard', 'requests', 'users', 'content', 'pricing', 'settings', 'translations', 'admins', 'audit'],
+  manager: ['dashboard', 'requests', 'users', 'content', 'pricing'],
+  editor: ['dashboard', 'content', 'settings', 'translations'],
+}
+
 export function hashPassword(password) {
   const salt = randomBytes(16).toString('hex')
   const hash = scryptSync(password, salt, 64).toString('hex')
@@ -12,7 +18,7 @@ export function hashPassword(password) {
 export function checkPassword(password, stored) {
   const [salt, hash] = String(stored).split(':')
   if (!salt || !hash) return false
-  const given = scryptSync(password, salt, 64)
+  const given = scryptSync(String(password), salt, 64)
   return timingSafeEqual(given, Buffer.from(hash, 'hex'))
 }
 
@@ -20,26 +26,18 @@ function sign(text) {
   return createHmac('sha256', config.tokenSecret).update(text).digest('base64url')
 }
 
-export function createToken(admin) {
-  const payload = { id: admin.id, email: admin.email, exp: Date.now() + TOKEN_DAYS * 24 * 60 * 60 * 1000 }
+export function createToken(type, account) {
+  const payload = { type, id: account.id, exp: Date.now() + TOKEN_DAYS * 24 * 60 * 60 * 1000 }
   const body = Buffer.from(JSON.stringify(payload)).toString('base64url')
   return `${body}.${sign(body)}`
 }
 
-export function readToken(token) {
-  const [body, signature] = String(token).split('.')
+export function readToken(req, type) {
+  const token = String(req.headers.authorization || '').replace('Bearer ', '')
+  const [body, signature] = token.split('.')
   if (!body || !signature || sign(body) !== signature) return null
 
   const payload = JSON.parse(Buffer.from(body, 'base64url').toString())
-  if (payload.exp < Date.now()) return null
+  if (payload.type !== type || payload.exp < Date.now()) return null
   return payload
-}
-
-export function requireAdmin(req, res, next) {
-  const header = req.headers.authorization || ''
-  const admin = readToken(header.replace('Bearer ', ''))
-  if (!admin) return res.status(401).json({ message: 'Giriş tələb olunur' })
-
-  req.admin = admin
-  next()
 }

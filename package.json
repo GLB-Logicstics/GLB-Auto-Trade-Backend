@@ -6,7 +6,8 @@
     "dev": "node --watch --env-file=.env src/index.js",
     "start": "node --env-file=.env src/index.js",
     "db:seed": "node --env-file=.env src/seed.js",
-    "db:reset": "node --env-file=.env src/seed.js --reset"
+    "db:reset": "node --env-file=.env src/seed.js --reset",
+    "admin:reset": "node --env-file=.env src/reset-admin.js"
   },
   "engines": {
     "node": ">=22"

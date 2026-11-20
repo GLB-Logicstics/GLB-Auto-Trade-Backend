@@ -9,9 +9,10 @@ export const collections = {
   news: { label: 'Xəbərlər', title: (item) => item.title },
   hero_slides: { label: 'Ana səhifə slayderi', title: (item) => item.title },
   brands: { label: 'Markalar', title: (item) => item.name },
+  part_types: { label: 'Hissə kateqoriyaları', title: (item) => item.label },
 }
 
-export const settingKeys = ['site', 'tariffs', 'price_history', 'tracking_sample']
+export const settingKeys = ['site', 'tariffs', 'price_history', 'tracking_sample', 'menus', 'locations']
 
 export function findCollection(name) {
   return Object.hasOwn(collections, name) ? collections[name] : null

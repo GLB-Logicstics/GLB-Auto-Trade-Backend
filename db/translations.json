@@ -1,0 +1,2054 @@
+{
+ "Ad": {
+  "en": "Name",
+  "ru": "Имя"
+ },
+ "Ad, soyad": {
+  "en": "Full name",
+  "ru": "Имя, фамилия"
+ },
+ "Ad, soyad *": {
+  "en": "Full name *",
+  "ru": "Имя, фамилия *"
+ },
+ "Artan": {
+  "en": "Ascending",
+  "ru": "По возрастанию"
+ },
+ "Arxa": {
+  "en": "Rear",
+  "ru": "Задний"
+ },
+ "Auksion": {
+  "en": "Auction",
+  "ru": "Аукцион"
+ },
+ "Auksion:": {
+  "en": "Auction:",
+  "ru": "Аукцион:"
+ },
+ "Avtomat": {
+  "en": "Automatic",
+  "ru": "Автомат"
+ },
+ "Avtomobil kataloqu": {
+  "en": "Car catalog",
+  "ru": "Каталог автомобилей"
+ },
+ "Axtar": {
+  "en": "Search",
+  "ru": "Найти"
+ },
+ "Azalan": {
+  "en": "Descending",
+  "ru": "По убыванию"
+ },
+ "Batumi": {
+  "en": "Batumi",
+  "ru": "Батуми"
+ },
+ "Benzin": {
+  "en": "Petrol",
+  "ru": "Бензин"
+ },
+ "Bizim": {
+  "en": "Our",
+  "ru": "Наши"
+ },
+ "Boz": {
+  "en": "Grey",
+  "ru": "Серый"
+ },
+ "Daha az −": {
+  "en": "Less −",
+  "ru": "Меньше −"
+ },
+ "Daxil ol": {
+  "en": "Sign in",
+  "ru": "Войти"
+ },
+ "Daxil olun": {
+  "en": "Sign in",
+  "ru": "Войдите"
+ },
+ "Dil": {
+  "en": "Language",
+  "ru": "Язык"
+ },
+ "Diler ol": {
+  "en": "Become a dealer",
+  "ru": "Стать дилером"
+ },
+ "Dizel": {
+  "en": "Diesel",
+  "ru": "Дизель"
+ },
+ "Elektrik": {
+  "en": "Electric",
+  "ru": "Электро"
+ },
+ "Hesabla": {
+  "en": "Calculate",
+  "ru": "Рассчитать"
+ },
+ "Hibrid": {
+  "en": "Hybrid",
+  "ru": "Гибрид"
+ },
+ "Marka": {
+  "en": "Make",
+  "ru": "Марка"
+ },
+ "Marka:": {
+  "en": "Make:",
+  "ru": "Марка:"
+ },
+ "Mavi": {
+  "en": "Blue",
+  "ru": "Синий"
+ },
+ "Menyu": {
+  "en": "Menu",
+  "ru": "Меню"
+ },
+ "Mesaj": {
+  "en": "Message",
+  "ru": "Сообщение"
+ },
+ "Mexaniki": {
+  "en": "Manual",
+  "ru": "Механика"
+ },
+ "Minimal rezerv:": {
+  "en": "Reserve:",
+  "ru": "Резерв:"
+ },
+ "Model": {
+  "en": "Model",
+  "ru": "Модель"
+ },
+ "Model:": {
+  "en": "Model:",
+  "ru": "Модель:"
+ },
+ "Oxu": {
+  "en": "Read",
+  "ru": "Читать"
+ },
+ "Poti": {
+  "en": "Poti",
+  "ru": "Поти"
+ },
+ "Profil": {
+  "en": "Profile",
+  "ru": "Профиль"
+ },
+ "Profilim": {
+  "en": "My profile",
+  "ru": "Мой профиль"
+ },
+ "Qalan vaxt:": {
+  "en": "Time left:",
+  "ru": "Осталось:"
+ },
+ "Qara": {
+  "en": "Black",
+  "ru": "Чёрный"
+ },
+ "Qeydiyyat": {
+  "en": "Sign up",
+  "ru": "Регистрация"
+ },
+ "Sedan": {
+  "en": "Sedan",
+  "ru": "Седан"
+ },
+ "Son": {
+  "en": "Latest",
+  "ru": "Последние"
+ },
+ "Tam": {
+  "en": "All-wheel",
+  "ru": "Полный"
+ },
+ "Tbilisi": {
+  "en": "Tbilisi",
+  "ru": "Тбилиси"
+ },
+ "Telefon": {
+  "en": "Phone",
+  "ru": "Телефон"
+ },
+ "Telefon *": {
+  "en": "Phone *",
+  "ru": "Телефон *"
+ },
+ "Var": {
+  "en": "Yes",
+  "ru": "Есть"
+ },
+ "Versiya:": {
+  "en": "Version:",
+  "ru": "Версия:"
+ },
+ "Yanacaq": {
+  "en": "Fuel",
+  "ru": "Топливо"
+ },
+ "Yanacaq:": {
+  "en": "Fuel:",
+  "ru": "Топливо:"
+ },
+ "Yekun": {
+  "en": "Total",
+  "ru": "Итого"
+ },
+ "Yeni": {
+  "en": "New",
+  "ru": "Новый"
+ },
+ "Yer": {
+  "en": "Location",
+  "ru": "Место"
+ },
+ "Yer:": {
+  "en": "Location:",
+  "ru": "Место:"
+ },
+ "Yeri:": {
+  "en": "Location:",
+  "ru": "Место:"
+ },
+ "Yoxdur": {
+  "en": "No",
+  "ru": "Нет"
+ },
+ "Yoxla": {
+  "en": "Check",
+  "ru": "Проверить"
+ },
+ "ucuz": {
+  "en": "cheaper",
+  "ru": "дешевле"
+ },
+ "{0} — GLB Logistics": {
+  "en": "{0} — GLB Logistics",
+  "ru": "{0} — GLB Logistics"
+ },
+ "\"{q}\" üzrə axtarış": {
+  "en": "Search for \"{q}\"",
+  "ru": "Поиск по «{q}»"
+ },
+ "0 nəticə": {
+  "en": "0 results",
+  "ru": "0 результатов"
+ },
+ "ABŞ hərrac meydançalarından Poti və Bakıya avtomobil daşınma qiymətləri.": {
+  "en": "Car shipping prices from US auction yards to Poti and Baku.",
+  "ru": "Цены доставки авто с аукционных площадок США в Поти и Баку."
+ },
+ "ABŞ – Poti": {
+  "en": "USA – Poti",
+  "ru": "США – Поти"
+ },
+ "ABŞ-dakı hərrac meydançasından Poti limanına və Bakıya qədər daşınma qiyməti.": {
+  "en": "Shipping price from the US auction yard to Poti port and Baku.",
+  "ru": "Стоимость доставки с аукционной площадки в США до порта Поти и Баку."
+ },
+ "Adınız": {
+  "en": "Your name",
+  "ru": "Ваше имя"
+ },
+ "Adınızı yazın": {
+  "en": "Enter your name",
+  "ru": "Введите имя"
+ },
+ "Amerikadan ən çox sifariş edilən avtomobillər": {
+  "en": "Most ordered cars from the USA",
+  "ru": "Самые заказываемые авто из США"
+ },
+ "Auksion növü": {
+  "en": "Auction type",
+  "ru": "Тип аукциона"
+ },
+ "Auksion növü:": {
+  "en": "Auction type:",
+  "ru": "Тип аукциона:"
+ },
+ "Avtomobil auksionu və gətirilməsi, daşınma, sökülmə və ABŞ-dan ehtiyat hissələrinin gətirilməsi.": {
+  "en": "Car auctions and import, shipping, dismantling and spare parts from the USA.",
+  "ru": "Покупка авто на аукционах, доставка, разборка и запчасти из США."
+ },
+ "Avtomobil bazarı, idxal qaydaları və GLB yenilikləri.": {
+  "en": "Car market, import rules and GLB news.",
+  "ru": "Авторынок, правила импорта и новости GLB."
+ },
+ "Avtomobil ehtiyat hissələrinin axtarışı və ABŞ-dan sifarişi: marka, model, il və hissə növü üzrə.": {
+  "en": "Search and order car parts from the USA by make, model, year and part type.",
+  "ru": "Поиск и заказ автозапчастей из США по марке, модели, году и типу."
+ },
+ "Avtomobil idxalı və bazar xəbərləri.": {
+  "en": "Car import and market news.",
+  "ru": "Новости импорта авто и рынка."
+ },
+ "Avtomobil izləmə": {
+  "en": "Car tracking",
+  "ru": "Отслеживание авто"
+ },
+ "Avtomobil izləmə — GLB Logistics": {
+  "en": "Car tracking — GLB Logistics",
+  "ru": "Отслеживание авто — GLB Logistics"
+ },
+ "Avtomobil seçin": {
+  "en": "Choose a car",
+  "ru": "Выберите авто"
+ },
+ "Avtomobil tapılmadı": {
+  "en": "Car not found",
+  "ru": "Автомобиль не найден"
+ },
+ "Avtomobil və hərrac məlumatları": {
+  "en": "Car and auction details",
+  "ru": "Данные авто и аукциона"
+ },
+ "Avtomobili seçin — Azərbaycana və Gürcüstana gətirilmə xərcini yerli bazar qiyməti ilə müqayisə edin.": {
+  "en": "Choose a car and compare the import cost to Azerbaijan and Georgia with the local market price.",
+  "ru": "Выберите авто и сравните стоимость ввоза в Азербайджан и Грузию с местной рыночной ценой."
+ },
+ "Avtomobilin Azərbaycana və Gürcüstana gətirilmə xərci və yerli bazar qiyməti ilə müqayisəsi.": {
+  "en": "Import cost of a car to Azerbaijan and Georgia compared with the local market price.",
+  "ru": "Стоимость ввоза авто в Азербайджан и Грузию в сравнении с местной рыночной ценой."
+ },
+ "Avtomobilin Azərbaycanda və ya Gürcüstanda gömrük ödənişlərini özünüz hesablayın.": {
+  "en": "Calculate customs payments for a car in Azerbaijan or Georgia yourself.",
+  "ru": "Рассчитайте таможенные платежи за авто в Азербайджане или Грузии."
+ },
+ "Avtomobilin qiyməti (USD)": {
+  "en": "Car price (USD)",
+  "ru": "Цена авто (USD)"
+ },
+ "Avtomobillər": {
+  "en": "Cars",
+  "ru": "Автомобили"
+ },
+ "Avtomobillərinizi, xidmətlərinizi və ehtiyat hissələrinizi platformada təqdim edin.": {
+  "en": "Present your cars, services and spare parts on the platform.",
+  "ru": "Размещайте свои авто, услуги и запчасти на платформе."
+ },
+ "Axtarış": {
+  "en": "Search",
+  "ru": "Поиск"
+ },
+ "Axtarış nəticələri": {
+  "en": "Search results",
+  "ru": "Результаты поиска"
+ },
+ "Az yanacaq, çox yol — qənaətli və səssiz sürüş.": {
+  "en": "Less fuel, more miles — efficient and quiet driving.",
+  "ru": "Меньше топлива, больше пути — экономично и тихо."
+ },
+ "Azərbaycan": {
+  "en": "Azerbaijan",
+  "ru": "Азербайджан"
+ },
+ "Azərbaycan və Gürcüstan üçün avtomobil gömrük rüsumu, aksiz, ƏDV və yığımların hesablanması.": {
+  "en": "Car customs duty, excise, VAT and fees for Azerbaijan and Georgia.",
+  "ru": "Расчёт пошлины, акциза, НДС и сборов на авто для Азербайджана и Грузии."
+ },
+ "Azərbaycanda": {
+  "en": "In Azerbaijan",
+  "ru": "В Азербайджане"
+ },
+ "Azərbaycanda satışda olan digər avtomobillər": {
+  "en": "Other cars for sale in Azerbaijan",
+  "ru": "Другие авто в продаже в Азербайджане"
+ },
+ "Azərbaycanda və Gürcüstanda satışda olan hazır avtomobillər. Ölkə, şəhər, marka, il və qiymətə görə filtr.": {
+  "en": "Cars for sale in Azerbaijan and Georgia. Filter by country, city, make, year and price.",
+  "ru": "Авто в продаже в Азербайджане и Грузии. Фильтр по стране, городу, марке, году и цене."
+ },
+ "Azərbaycandakı avtomobillər": {
+  "en": "Cars in Azerbaijan",
+  "ru": "Авто в Азербайджане"
+ },
+ "Açar:": {
+  "en": "Keys:",
+  "ru": "Ключи:"
+ },
+ "Açarlar:": {
+  "en": "Keys:",
+  "ru": "Ключи:"
+ },
+ "Aşağıdakı formu doldurun — hissəni ABŞ-dan tapıb gətirək.": {
+  "en": "Fill in the form below and we will find the part in the USA.",
+  "ru": "Заполните форму — мы найдём деталь в США и привезём."
+ },
+ "Bakı": {
+  "en": "Baku",
+  "ru": "Баку"
+ },
+ "Ban növü": {
+  "en": "Body type",
+  "ru": "Тип кузова"
+ },
+ "Ban növü:": {
+  "en": "Body type:",
+  "ru": "Тип кузова:"
+ },
+ "Baxış və WhatsApp kliklərinin sayını izləyirsiniz.": {
+  "en": "You track views and WhatsApp clicks.",
+  "ru": "Вы видите число просмотров и кликов в WhatsApp."
+ },
+ "Bazar qiyməti": {
+  "en": "Market price",
+  "ru": "Рыночная цена"
+ },
+ "Bağla": {
+  "en": "Close",
+  "ru": "Закрыть"
+ },
+ "Başlanğıc": {
+  "en": "Start",
+  "ru": "Начало"
+ },
+ "Bildirişlər": {
+  "en": "Notifications",
+  "ru": "Уведомления"
+ },
+ "Birbaşa əlaqə": {
+  "en": "Direct contact",
+  "ru": "Прямая связь"
+ },
+ "Bizimlə Əlaqə": {
+  "en": "Contact us",
+  "ru": "Связаться с нами"
+ },
+ "Bizə yazın": {
+  "en": "Write to us",
+  "ru": "Напишите нам"
+ },
+ "Bu xidmət üçün müraciət": {
+  "en": "Request this service",
+  "ru": "Заявка на эту услугу"
+ },
+ "Bu şəhərdə hazırda satışda avtomobil yoxdur.": {
+  "en": "No cars for sale in this city right now.",
+  "ru": "В этом городе сейчас нет авто в продаже."
+ },
+ "Bugünkü hərrac": {
+  "en": "Today's auction",
+  "ru": "Сегодняшний аукцион"
+ },
+ "Buraxılış ili": {
+  "en": "Year",
+  "ru": "Год выпуска"
+ },
+ "Bütün auksionlar": {
+  "en": "All auctions",
+  "ru": "Все аукционы"
+ },
+ "Bütün filtrləri sil": {
+  "en": "Clear all filters",
+  "ru": "Сбросить все фильтры"
+ },
+ "Bütün hissələr": {
+  "en": "All parts",
+  "ru": "Все запчасти"
+ },
+ "Bütün hüquqlar qorunur.": {
+  "en": "All rights reserved.",
+  "ru": "Все права защищены."
+ },
+ "Bütün xidmətlər": {
+  "en": "All services",
+  "ru": "Все услуги"
+ },
+ "Bütün xəbərlər": {
+  "en": "All news",
+  "ru": "Все новости"
+ },
+ "Bütün ölkələr": {
+  "en": "All countries",
+  "ru": "Все страны"
+ },
+ "Bütün şəhərlər": {
+  "en": "All cities",
+  "ru": "Все города"
+ },
+ "Bəyəndiyiniz avtomobillər yadda saxlanılıb. Onların siyahısını görmək üçün hesabınıza daxil olun.": {
+  "en": "Your liked cars are saved. Sign in to see the list.",
+  "ru": "Понравившиеся авто сохранены. Войдите, чтобы увидеть список."
+ },
+ "Bəyəndiyiniz avtomobilləri yadda saxlayın, müraciətlərinizi izləyin.": {
+  "en": "Save the cars you like and track your requests.",
+  "ru": "Сохраняйте понравившиеся авто и следите за заявками."
+ },
+ "Bəyəndiyiniz avtomobilləri ürək düyməsi ilə seçilmişlərə əlavə edin.": {
+  "en": "Add cars you like to favourites with the heart button.",
+  "ru": "Добавляйте авто в избранное кнопкой с сердцем."
+ },
+ "Canlı hərrac": {
+  "en": "Live auction",
+  "ru": "Живой аукцион"
+ },
+ "Copart, IAAI və Manheim hərraclarında tezliklə satışa çıxacaq avtomobillər": {
+  "en": "Cars coming up soon at Copart, IAAI and Manheim auctions",
+  "ru": "Авто, которые скоро выйдут на торги Copart, IAAI и Manheim"
+ },
+ "Copart, IAAI və Manheim hərraclarından avtomobil sifarişi, Azərbaycana və Gürcüstana daşınma, gömrük xərclərinin hesablanması.": {
+  "en": "Order cars from Copart, IAAI and Manheim, shipping to Azerbaijan and Georgia, customs cost calculation.",
+  "ru": "Заказ авто с Copart, IAAI и Manheim, доставка в Азербайджан и Грузию, расчёт растаможки."
+ },
+ "Copart, IAAI və Manheim hərraclarından avtomobilin Azərbaycana və Gürcüstana gətirilmə xərcini hesablayın.": {
+  "en": "Calculate the cost of bringing a car from Copart, IAAI and Manheim to Azerbaijan and Georgia.",
+  "ru": "Рассчитайте стоимость ввоза авто с Copart, IAAI и Manheim в Азербайджан и Грузию."
+ },
+ "Copart, IAAI və Manheim hərraclarından avtomobillər. Auksion, növ, tarix və digər filtrlər, tam qiymət hesablaması.": {
+  "en": "Cars from Copart, IAAI and Manheim auctions. Filters by auction, type, date and more, with full price calculation.",
+  "ru": "Авто с аукционов Copart, IAAI и Manheim. Фильтры по аукциону, типу, дате и другим, полный расчёт цены."
+ },
+ "Cəmi daşınma": {
+  "en": "Total shipping",
+  "ru": "Итого доставка"
+ },
+ "Cəmi gömrük ödənişi": {
+  "en": "Total customs payment",
+  "ru": "Итого таможенные платежи"
+ },
+ "Daha çox +": {
+  "en": "More +",
+  "ru": "Больше +"
+ },
+ "Daşınma (ABŞ – Poti)": {
+  "en": "Shipping (USA – Poti)",
+  "ru": "Доставка (США – Поти)"
+ },
+ "Daşınma (Poti – Bakı)": {
+  "en": "Shipping (Poti – Baku)",
+  "ru": "Доставка (Поти – Баку)"
+ },
+ "Daşınma kalkulyatoru": {
+  "en": "Shipping calculator",
+  "ru": "Калькулятор доставки"
+ },
+ "Daşınma kalkulyatoru — GLB Logistics": {
+  "en": "Shipping calculator — GLB Logistics",
+  "ru": "Калькулятор доставки — GLB Logistics"
+ },
+ "Daşınma sığortası": {
+  "en": "Shipping insurance",
+  "ru": "Страховка доставки"
+ },
+ "Digər": {
+  "en": "Other",
+  "ru": "Другое"
+ },
+ "Digər yığımlar": {
+  "en": "Other fees",
+  "ru": "Прочие сборы"
+ },
+ "Diler və partnyorlar üçün": {
+  "en": "For dealers and partners",
+  "ru": "Для дилеров и партнёров"
+ },
+ "Diler və ya partnyorsunuz?": {
+  "en": "Are you a dealer or partner?",
+  "ru": "Вы дилер или партнёр?"
+ },
+ "Dilerlər, servislər və ehtiyat hissəsi satıcıları üçün GLB platformasına qoşulma.": {
+  "en": "Join the GLB platform as a dealer, service or parts seller.",
+  "ru": "Подключение к платформе GLB для дилеров, сервисов и продавцов запчастей."
+ },
+ "Dövlət Gömrük Komitəsinin dərəcələrinə əsasən.": {
+  "en": "Based on the State Customs Committee rates.",
+  "ru": "По ставкам Государственного таможенного комитета."
+ },
+ "E-poçt": {
+  "en": "Email",
+  "ru": "Эл. почта"
+ },
+ "E-poçt ünvanını düzgün yazın": {
+  "en": "Enter a valid email",
+  "ru": "Введите корректный e-mail"
+ },
+ "Ehtiyat hissələri": {
+  "en": "Spare parts",
+  "ru": "Запчасти"
+ },
+ "Ehtiyat hissələri — GLB Logistics": {
+  "en": "Spare parts — GLB Logistics",
+  "ru": "Запчасти — GLB Logistics"
+ },
+ "Elanlarınız Azərbaycan və Gürcüstandakı alıcılara göstərilir.": {
+  "en": "Your listings are shown to buyers in Azerbaijan and Georgia.",
+  "ru": "Ваши объявления видят покупатели в Азербайджане и Грузии."
+ },
+ "Faydalı Linklər": {
+  "en": "Useful links",
+  "ru": "Полезные ссылки"
+ },
+ "Filtirlə": {
+  "en": "Filter",
+  "ru": "Фильтр"
+ },
+ "Filtrlər": {
+  "en": "Filters",
+  "ru": "Фильтры"
+ },
+ "Filtrləri təmizlə": {
+  "en": "Clear filters",
+  "ru": "Сбросить фильтры"
+ },
+ "Foto və video tezliklə əlavə olunacaq": {
+  "en": "Photos and videos will be added soon",
+  "ru": "Фото и видео скоро появятся"
+ },
+ "Fəaliyyət növü": {
+  "en": "Business type",
+  "ru": "Вид деятельности"
+ },
+ "GLB Helper — orta satış qiyməti": {
+  "en": "GLB Helper — average sale price",
+  "ru": "GLB Helper — средняя цена продажи"
+ },
+ "GLB Logistics ilə əlaqə: telefon, WhatsApp, e-poçt, ünvan və müraciət forması.": {
+  "en": "Contact GLB Logistics: phone, WhatsApp, email, address and request form.",
+  "ru": "Связь с GLB Logistics: телефон, WhatsApp, e-mail, адрес и форма заявки."
+ },
+ "GLB Logistics — Amerikadan avtomobil sifarişi və daşınması": {
+  "en": "GLB Logistics — ordering and shipping cars from the USA",
+  "ru": "GLB Logistics — заказ и доставка авто из США"
+ },
+ "Gömrük": {
+  "en": "Customs",
+  "ru": "Таможня"
+ },
+ "Gömrük (təxmini)": {
+  "en": "Customs (estimate)",
+  "ru": "Таможня (примерно)"
+ },
+ "Gömrük brokeri xidməti": {
+  "en": "Customs broker service",
+  "ru": "Услуги таможенного брокера"
+ },
+ "Gömrük dəyəri": {
+  "en": "Customs value",
+  "ru": "Таможенная стоимость"
+ },
+ "Gömrük kalkulyatoru": {
+  "en": "Customs calculator",
+  "ru": "Таможенный калькулятор"
+ },
+ "Gömrük kalkulyatoru — GLB Logistics": {
+  "en": "Customs calculator — GLB Logistics",
+  "ru": "Таможенный калькулятор — GLB Logistics"
+ },
+ "Gömrük yığımı": {
+  "en": "Customs fee",
+  "ru": "Таможенный сбор"
+ },
+ "Göndər": {
+  "en": "Send",
+  "ru": "Отправить"
+ },
+ "Göndərilir...": {
+  "en": "Sending...",
+  "ru": "Отправка..."
+ },
+ "Gürcüstan": {
+  "en": "Georgia",
+  "ru": "Грузия"
+ },
+ "Gürcüstan Gəlirlər Xidmətinin (rs.ge) 2026 dərəcələrinə əsasən.": {
+  "en": "Based on the Georgia Revenue Service (rs.ge) 2026 rates.",
+  "ru": "По ставкам Службы доходов Грузии (rs.ge) на 2026 год."
+ },
+ "Gürcüstanda": {
+  "en": "In Georgia",
+  "ru": "В Грузии"
+ },
+ "Gəncə": {
+  "en": "Ganja",
+  "ru": "Гянджа"
+ },
+ "Hamısına bax": {
+  "en": "View all",
+  "ru": "Смотреть все"
+ },
+ "Haqqımızda": {
+  "en": "About us",
+  "ru": "О нас"
+ },
+ "Hazır avtomobillərinizi, xidmətlərinizi və ehtiyat hissələrinizi platformada təqdim edin, yeni müştərilər qazanın.": {
+  "en": "List your cars, services and spare parts on the platform and win new customers.",
+  "ru": "Размещайте авто, услуги и запчасти на платформе и находите новых клиентов."
+ },
+ "Hazırda": {
+  "en": "Now",
+  "ru": "Сейчас"
+ },
+ "Hazırkı təklif:": {
+  "en": "Current bid:",
+  "ru": "Текущая ставка:"
+ },
+ "Hesab məlumatları": {
+  "en": "Account details",
+  "ru": "Данные аккаунта"
+ },
+ "Hesab məlumatlarınız və müraciətləriniz.": {
+  "en": "Your account details and requests.",
+  "ru": "Данные аккаунта и ваши заявки."
+ },
+ "Hesab yaradın": {
+  "en": "Create an account",
+  "ru": "Создайте аккаунт"
+ },
+ "Hesab yaradın — seçilmişləriniz və müraciətləriniz bir yerdə saxlanılsın.": {
+  "en": "Create an account to keep your favourites and requests in one place.",
+  "ru": "Создайте аккаунт — избранное и заявки будут в одном месте."
+ },
+ "Hesablama təxminidir, məzənnə:": {
+  "en": "The calculation is approximate, rate:",
+  "ru": "Расчёт примерный, курс:"
+ },
+ "Hesablama təxminidir. Dəqiq məbləğ üçün bizimlə əlaqə saxlayın.": {
+  "en": "The calculation is approximate. Contact us for the exact amount.",
+  "ru": "Расчёт примерный. Для точной суммы свяжитесь с нами."
+ },
+ "Hesabınız var?": {
+  "en": "Have an account?",
+  "ru": "Уже есть аккаунт?"
+ },
+ "Hesabınız yoxdur?": {
+  "en": "No account?",
+  "ru": "Нет аккаунта?"
+ },
+ "Hibrid avtomobillər": {
+  "en": "Hybrid cars",
+  "ru": "Гибридные авто"
+ },
+ "Hissə növü": {
+  "en": "Part type",
+  "ru": "Тип запчасти"
+ },
+ "Hissə tapılmadı": {
+  "en": "No parts found",
+  "ru": "Запчасти не найдены"
+ },
+ "Hissəni tapmadınız? Sorğu göndərin": {
+  "en": "Didn't find the part? Send a request",
+  "ru": "Не нашли деталь? Отправьте запрос"
+ },
+ "Hissənin adı (məs. fara)": {
+  "en": "Part name (e.g. headlight)",
+  "ru": "Название детали (напр. фара)"
+ },
+ "Hələ müraciət göndərməmisiniz.": {
+  "en": "You haven't sent any requests yet.",
+  "ru": "Вы ещё не отправляли заявок."
+ },
+ "Hər elanın altında sizin WhatsApp və telefonunuz olur.": {
+  "en": "Every listing shows your WhatsApp and phone.",
+  "ru": "В каждом объявлении указаны ваш WhatsApp и телефон."
+ },
+ "Hərrac (ABŞ)": {
+  "en": "Auction (USA)",
+  "ru": "Аукцион (США)"
+ },
+ "Hərrac bitib": {
+  "en": "Auction ended",
+  "ru": "Аукцион завершён"
+ },
+ "Hərrac filtrləri": {
+  "en": "Auction filters",
+  "ru": "Фильтры аукциона"
+ },
+ "Hərrac kalkulyatoru": {
+  "en": "Auction calculator",
+  "ru": "Аукционный калькулятор"
+ },
+ "Hərrac kalkulyatoru — GLB Logistics": {
+  "en": "Auction calculator — GLB Logistics",
+  "ru": "Аукционный калькулятор — GLB Logistics"
+ },
+ "Hərrac lotları": {
+  "en": "Auction lots",
+  "ru": "Лоты аукциона"
+ },
+ "Hərrac lotları — GLB Logistics": {
+  "en": "Auction lots — GLB Logistics",
+  "ru": "Лоты аукциона — GLB Logistics"
+ },
+ "Hərrac lotlarına bax": {
+  "en": "View auction lots",
+  "ru": "Смотреть лоты"
+ },
+ "Hərrac meydançası": {
+  "en": "Auction yard",
+  "ru": "Аукционная площадка"
+ },
+ "Hərrac qiyməti son satışların orta göstəricisidir. Yerli bazar qiymətləri nümunədir və icazəli inteqrasiyadan sonra avtomatik yenilənəcək.": {
+  "en": "The auction price is the average of recent sales. Local market prices are samples and will update automatically after an authorised integration.",
+  "ru": "Цена аукциона — среднее по последним продажам. Местные цены — пример, они будут обновляться автоматически после интеграции."
+ },
+ "Hərrac rüsumu": {
+  "en": "Auction fee",
+  "ru": "Аукционный сбор"
+ },
+ "Hərrac tarixi:": {
+  "en": "Auction date:",
+  "ru": "Дата аукциона:"
+ },
+ "Hərracda iştirak etmək üçün bizimlə əlaqə saxlayın. Mütəxəssislərimiz bütün mərhələlər üzrə sizə kömək edəcək.": {
+  "en": "Contact us to take part in the auction. Our specialists will help you at every step.",
+  "ru": "Свяжитесь с нами для участия в аукционе. Наши специалисты помогут на каждом этапе."
+ },
+ "Hərracdan Azərbaycana və ya Gürcüstana qədər bütün xərcləri bir yerdə hesablayın.": {
+  "en": "Calculate all costs from the auction to Azerbaijan or Georgia in one place.",
+  "ru": "Рассчитайте все расходы от аукциона до Азербайджана или Грузии в одном месте."
+ },
+ "Hərracdan alışdan ehtiyat hissələrinə qədər — avtomobillə bağlı bütün işləri bir yerdən həll edin.": {
+  "en": "From auction purchase to spare parts — handle everything about your car in one place.",
+  "ru": "От покупки на аукционе до запчастей — всё об авто в одном месте."
+ },
+ "Hərracdan qapınıza qədər bütün mərhələlər bir yerdə": {
+  "en": "Every step from the auction to your door in one place",
+  "ru": "Все этапы от аукциона до вашей двери"
+ },
+ "Hərraclar": {
+  "en": "Auctions",
+  "ru": "Аукционы"
+ },
+ "Kalkulyatorda təklif etmək istədiyiniz məbləği yazın və çatdırılma ölkəsini seçin — hərrac rüsumu, daşınma və gömrük xərcləri ilə birlikdə yekun qiyməti dərhal görəcəksiniz.": {
+  "en": "Enter the amount you want to bid and choose the delivery country — you will instantly see the total price including auction fees, shipping and customs.",
+  "ru": "Введите сумму ставки и страну доставки — сразу увидите итоговую цену со сборами аукциона, доставкой и таможней."
+ },
+ "Kodu yoxlayın və ya menecerinizlə əlaqə saxlayın.": {
+  "en": "Check the code or contact your manager.",
+  "ru": "Проверьте код или свяжитесь с менеджером."
+ },
+ "Koreyada qiymət": {
+  "en": "Price in Korea",
+  "ru": "Цена в Корее"
+ },
+ "Koreyadakı qiymət, çatdırılma və seçdiyiniz ölkəyə düşən yekun qiymət bir kartda.": {
+  "en": "Price in Korea, delivery and the total for your chosen country on one card.",
+  "ru": "Цена в Корее, доставка и итоговая сумма для выбранной страны в одной карточке."
+ },
+ "Koreyadan Azərbaycana və Gürcüstana avtomobil gətirilməsi: qiymət, çatdırılma və gömrük daxil yekun məbləğ.": {
+  "en": "Importing cars from Korea to Azerbaijan and Georgia: total including price, delivery and customs.",
+  "ru": "Ввоз авто из Кореи в Азербайджан и Грузию: итог с ценой, доставкой и таможней."
+ },
+ "Koreyadan avtomobillər": {
+  "en": "Cars from Korea",
+  "ru": "Авто из Кореи"
+ },
+ "Koreyadan avtomobillər — GLB Logistics": {
+  "en": "Cars from Korea — GLB Logistics",
+  "ru": "Авто из Кореи — GLB Logistics"
+ },
+ "Koreyadan gətirilən avtomobillər": {
+  "en": "Cars imported from Korea",
+  "ru": "Авто, привезённые из Кореи"
+ },
+ "Lot #{number} detalları": {
+  "en": "Lot #{number} details",
+  "ru": "Детали лота #{number}"
+ },
+ "Lot tapılmadı": {
+  "en": "Lot not found",
+  "ru": "Лот не найден"
+ },
+ "Marka seçin": {
+  "en": "Choose make",
+  "ru": "Выберите марку"
+ },
+ "Marka, model və hissə növünə görə axtarın, tapılmayanı ABŞ-dan gətirək.": {
+  "en": "Search by make, model and part type — we'll bring what's missing from the USA.",
+  "ru": "Ищите по марке, модели и типу детали — недостающее привезём из США."
+ },
+ "Marka, model və ili seçin — avtomobilin Azərbaycana və Gürcüstana gətirilmə xərcini yerli bazar qiyməti ilə müqayisə edin.": {
+  "en": "Choose make, model and year and compare the import cost to Azerbaijan and Georgia with the local market price.",
+  "ru": "Выберите марку, модель и год и сравните стоимость ввоза с местной рыночной ценой."
+ },
+ "Marka, model, il və hissə növünə görə axtarın. Tapmadığınız hissəni ABŞ-dan gətiririk.": {
+  "en": "Search by make, model, year and part type. We bring parts you can't find from the USA.",
+  "ru": "Ищите по марке, модели, году и типу. Ненайденные детали привезём из США."
+ },
+ "Marka, model, il və lazım olan hissə": {
+  "en": "Make, model, year and the part you need",
+  "ru": "Марка, модель, год и нужная деталь"
+ },
+ "Marka, model, lot və ya VIN üzrə axtar": {
+  "en": "Search by make, model, lot or VIN",
+  "ru": "Поиск по марке, модели, лоту или VIN"
+ },
+ "Marşrut": {
+  "en": "Route",
+  "ru": "Маршрут"
+ },
+ "Meydança seçin": {
+  "en": "Choose yard",
+  "ru": "Выберите площадку"
+ },
+ "Minimum təklif əsasında": {
+  "en": "Minimum bid",
+  "ru": "С минимальной ставкой"
+ },
+ "Model seçin": {
+  "en": "Choose model",
+  "ru": "Выберите модель"
+ },
+ "Mühərrik": {
+  "en": "Engine",
+  "ru": "Двигатель"
+ },
+ "Mühərrik həcmi (sm³)": {
+  "en": "Engine size (cm³)",
+  "ru": "Объём двигателя (см³)"
+ },
+ "Mühərrik:": {
+  "en": "Engine:",
+  "ru": "Двигатель:"
+ },
+ "Müraciət göndər": {
+  "en": "Send request",
+  "ru": "Отправить заявку"
+ },
+ "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin və ya WhatsApp ilə yazın.": {
+  "en": "The request was not sent. Try again later or write on WhatsApp.",
+  "ru": "Заявка не отправлена. Попробуйте позже или напишите в WhatsApp."
+ },
+ "Müraciət göndərilmədi. Bir az sonra yenidən cəhd edin.": {
+  "en": "The request was not sent. Try again later.",
+  "ru": "Заявка не отправлена. Попробуйте позже."
+ },
+ "Müraciətiniz qəbul edildi. Partnyorluq üzrə menecerimiz sizinlə əlaqə saxlayacaq.": {
+  "en": "Your request has been received. Our partnership manager will contact you.",
+  "ru": "Заявка принята. Наш менеджер по партнёрству свяжется с вами."
+ },
+ "Müraciətiniz qəbul edildi. Əməkdaşımız qısa zamanda sizinlə əlaqə saxlayacaq.": {
+  "en": "Your request has been received. Our team will contact you shortly.",
+  "ru": "Заявка принята. Наш сотрудник скоро свяжется с вами."
+ },
+ "Müraciətlərim": {
+  "en": "My requests",
+  "ru": "Мои заявки"
+ },
+ "Mütəxəssislərimiz iş saatlarında sizə kömək etməyə hazırdır.": {
+  "en": "Our specialists are ready to help during working hours.",
+  "ru": "Наши специалисты готовы помочь в рабочее время."
+ },
+ "Məlumat": {
+  "en": "Information",
+  "ru": "Информация"
+ },
+ "Məlumat tapılmadı": {
+  "en": "Nothing found",
+  "ru": "Ничего не найдено"
+ },
+ "Məlumat yoxdur": {
+  "en": "No information",
+  "ru": "Нет данных"
+ },
+ "Məxfilik siyasəti": {
+  "en": "Privacy policy",
+  "ru": "Политика конфиденциальности"
+ },
+ "Necə işləyir": {
+  "en": "How it works",
+  "ru": "Как это работает"
+ },
+ "Növbəti": {
+  "en": "Next",
+  "ru": "Далее"
+ },
+ "Nümunə məlumatdır. Real qrafik GLB Helper inteqrasiyasından sonra göstəriləcək.": {
+  "en": "Sample data. The real chart will appear after the GLB Helper integration.",
+  "ru": "Пример данных. Реальный график появится после интеграции GLB Helper."
+ },
+ "Nümunə üçün yoxlayın:": {
+  "en": "Try a sample:",
+  "ru": "Проверьте пример:"
+ },
+ "Nəqliyyat növü": {
+  "en": "Vehicle type",
+  "ru": "Тип транспорта"
+ },
+ "Nəqliyyat vasitəsinin məlumatları": {
+  "en": "Vehicle details",
+  "ru": "Данные транспортного средства"
+ },
+ "Nəqliyyat xərcləri (USD)": {
+  "en": "Transport costs (USD)",
+  "ru": "Транспортные расходы (USD)"
+ },
+ "Nəticə": {
+  "en": "Result",
+  "ru": "Результат"
+ },
+ "Nəticə tapılmadı": {
+  "en": "No results",
+  "ru": "Ничего не найдено"
+ },
+ "Nəticəni görmək üçün marka, model və il seçin.": {
+  "en": "Choose make, model and year to see the result.",
+  "ru": "Выберите марку, модель и год, чтобы увидеть результат."
+ },
+ "Oxşar": {
+  "en": "Similar",
+  "ru": "Похожие"
+ },
+ "Populyar filtrlər:": {
+  "en": "Popular filters:",
+  "ru": "Популярные фильтры:"
+ },
+ "Poti – Bakı": {
+  "en": "Poti – Baku",
+  "ru": "Поти – Баку"
+ },
+ "Profilinizi görmək üçün daxil olun və ya qeydiyyatdan keçin.": {
+  "en": "Sign in or sign up to see your profile.",
+  "ru": "Войдите или зарегистрируйтесь, чтобы увидеть профиль."
+ },
+ "Profilə keç": {
+  "en": "Go to profile",
+  "ru": "Перейти в профиль"
+ },
+ "Qeydiyyatdan keç": {
+  "en": "Sign up",
+  "ru": "Зарегистрироваться"
+ },
+ "Qeydiyyatdan keçin": {
+  "en": "Sign up",
+  "ru": "Зарегистрируйтесь"
+ },
+ "Qeyri-standart sənəd": {
+  "en": "Non-standard title",
+  "ru": "Нестандартный документ"
+ },
+ "Qiymət": {
+  "en": "Price",
+  "ru": "Цена"
+ },
+ "Qiymət (USD)": {
+  "en": "Price (USD)",
+  "ru": "Цена (USD)"
+ },
+ "Qiymət, çatdırılma və gömrük daxil yekun məbləğ": {
+  "en": "Total including price, delivery and customs",
+  "ru": "Итог с ценой, доставкой и таможней"
+ },
+ "Qiymət:": {
+  "en": "Price:",
+  "ru": "Цена:"
+ },
+ "Qiymətə görə": {
+  "en": "By price",
+  "ru": "По цене"
+ },
+ "Qoşulmaq üçün müraciət": {
+  "en": "Apply to join",
+  "ru": "Заявка на подключение"
+ },
+ "Qısa keçidlər": {
+  "en": "Quick links",
+  "ru": "Быстрые ссылки"
+ },
+ "Qənaət": {
+  "en": "Savings",
+  "ru": "Экономия"
+ },
+ "Rezerv var (məbləğ açıqlanmır)": {
+  "en": "Reserve set (amount not disclosed)",
+  "ru": "Есть резерв (сумма не раскрывается)"
+ },
+ "Risklər barədə": {
+  "en": "About risks",
+  "ru": "О рисках"
+ },
+ "Risklər barədə xəbərdarlıq": {
+  "en": "Risk disclaimer",
+  "ru": "Предупреждение о рисках"
+ },
+ "Rəng": {
+  "en": "Colour",
+  "ru": "Цвет"
+ },
+ "Rəng:": {
+  "en": "Colour:",
+  "ru": "Цвет:"
+ },
+ "Rəsmiləşdirmə, qeydiyyat və nömrə": {
+  "en": "Clearance, registration and plates",
+  "ru": "Оформление, регистрация и номера"
+ },
+ "Sabahkı hərrac": {
+  "en": "Tomorrow's auction",
+  "ru": "Завтрашний аукцион"
+ },
+ "Satıcı təsdiqi ilə": {
+  "en": "Seller approval",
+  "ru": "С одобрения продавца"
+ },
+ "Satıcının təsdiqi ilə": {
+  "en": "Subject to seller approval",
+  "ru": "С одобрения продавца"
+ },
+ "Satılıb": {
+  "en": "Sold",
+  "ru": "Продано"
+ },
+ "Satılır": {
+  "en": "For sale",
+  "ru": "Продаётся"
+ },
+ "Satış məlumatı": {
+  "en": "Sale details",
+  "ru": "Данные продажи"
+ },
+ "Satış statusu:": {
+  "en": "Sale status:",
+  "ru": "Статус продажи:"
+ },
+ "Satış tarixi": {
+  "en": "Sale date",
+  "ru": "Дата продажи"
+ },
+ "Satışda": {
+  "en": "For sale",
+  "ru": "В продаже"
+ },
+ "Satışda olan avtomobillər": {
+  "en": "Cars for sale",
+  "ru": "Авто в продаже"
+ },
+ "Satışda olan avtomobillər — GLB Logistics": {
+  "en": "Cars for sale — GLB Logistics",
+  "ru": "Авто в продаже — GLB Logistics"
+ },
+ "Satışdadır": {
+  "en": "For sale",
+  "ru": "В продаже"
+ },
+ "Sağ sükan": {
+  "en": "Right-hand drive",
+  "ru": "Правый руль"
+ },
+ "Servis xidməti": {
+  "en": "Car service",
+  "ru": "Автосервис"
+ },
+ "Seçdiyiniz avtomobilə uyğun digər lotlar": {
+  "en": "Other lots similar to your car",
+  "ru": "Другие лоты, похожие на выбранное авто"
+ },
+ "Seçdiyiniz filtrlərə uyğun avtomobil yoxdur.": {
+  "en": "No cars match your filters.",
+  "ru": "Нет авто по выбранным фильтрам."
+ },
+ "Seçdiyiniz marka və modelə uyğun avtomobil yoxdur.": {
+  "en": "No cars match the selected make and model.",
+  "ru": "Нет авто для выбранной марки и модели."
+ },
+ "Seçilmişlər": {
+  "en": "Favourites",
+  "ru": "Избранное"
+ },
+ "Seçilmişlər və müraciətlərinizi görmək üçün hesabınıza daxil olun.": {
+  "en": "Sign in to see your favourites and requests.",
+  "ru": "Войдите, чтобы увидеть избранное и заявки."
+ },
+ "Seçilmişlər — GLB Logistics": {
+  "en": "Favourites — GLB Logistics",
+  "ru": "Избранное — GLB Logistics"
+ },
+ "Seçilmişlərdədir": {
+  "en": "In favourites",
+  "ru": "В избранном"
+ },
+ "Seçilmişlərdən çıxar": {
+  "en": "Remove from favourites",
+  "ru": "Убрать из избранного"
+ },
+ "Seçilmişlərə baxmaq üçün daxil olun": {
+  "en": "Sign in to view favourites",
+  "ru": "Войдите, чтобы посмотреть избранное"
+ },
+ "Seçilmişlərə əlavə et": {
+  "en": "Add to favourites",
+  "ru": "Добавить в избранное"
+ },
+ "Seçim yoxdur": {
+  "en": "No options",
+  "ru": "Нет вариантов"
+ },
+ "Seçin": {
+  "en": "Select",
+  "ru": "Выберите"
+ },
+ "Siyahı boşdur": {
+  "en": "The list is empty",
+  "ru": "Список пуст"
+ },
+ "Son 30 gün": {
+  "en": "Last 30 days",
+  "ru": "Последние 30 дней"
+ },
+ "Son 6 ayda {name} üçün hərraclarda orta satış qiyməti. Orta:": {
+  "en": "Average auction sale price for {name} over the last 6 months. Average:",
+  "ru": "Средняя цена продажи {name} на аукционах за 6 месяцев. Среднее:"
+ },
+ "Son 7 gün": {
+  "en": "Last 7 days",
+  "ru": "Последние 7 дней"
+ },
+ "Sorğu": {
+  "en": "Request",
+  "ru": "Запрос"
+ },
+ "Sorğu göndər": {
+  "en": "Send request",
+  "ru": "Отправить запрос"
+ },
+ "Standart sənəd": {
+  "en": "Standard title",
+  "ru": "Стандартный документ"
+ },
+ "Stok sayı, şəhər, xidmətlər": {
+  "en": "Stock count, city, services",
+  "ru": "Число авто, город, услуги"
+ },
+ "Suallarınız üçün zəng edin, WhatsApp-a yazın və ya formu doldurun.": {
+  "en": "Call us, message us on WhatsApp or fill in the form.",
+  "ru": "Звоните, пишите в WhatsApp или заполните форму."
+ },
+ "Sualınız var?": {
+  "en": "Have a question?",
+  "ru": "Есть вопрос?"
+ },
+ "Sualınızı və ya istəyinizi yazın": {
+  "en": "Write your question or request",
+  "ru": "Напишите вопрос или пожелание"
+ },
+ "Sumqayıt": {
+  "en": "Sumgait",
+  "ru": "Сумгаит"
+ },
+ "Sürət qutusu": {
+  "en": "Transmission",
+  "ru": "Коробка передач"
+ },
+ "Sürət qutusu:": {
+  "en": "Transmission:",
+  "ru": "Коробка передач:"
+ },
+ "Sıfırla": {
+  "en": "Reset",
+  "ru": "Сбросить"
+ },
+ "Sırala:": {
+  "en": "Sort:",
+  "ru": "Сортировка:"
+ },
+ "Səhifə": {
+  "en": "Page",
+  "ru": "Страница"
+ },
+ "Səhifə tapılmadı": {
+  "en": "Page not found",
+  "ru": "Страница не найдена"
+ },
+ "Sənəd": {
+  "en": "Document",
+  "ru": "Документ"
+ },
+ "Sənəd növü": {
+  "en": "Document type",
+  "ru": "Тип документа"
+ },
+ "Sənəd:": {
+  "en": "Document:",
+  "ru": "Документ:"
+ },
+ "Sənədlərin hazırlanması": {
+  "en": "Document preparation",
+  "ru": "Подготовка документов"
+ },
+ "Telefon nömrəsini düzgün yazın": {
+  "en": "Enter a valid phone number",
+  "ru": "Введите корректный номер телефона"
+ },
+ "Təklif ilə": {
+  "en": "On offer",
+  "ru": "По предложению"
+ },
+ "Təklif məbləği": {
+  "en": "Bid amount",
+  "ru": "Сумма ставки"
+ },
+ "Təklif məbləği (USD)": {
+  "en": "Bid amount (USD)",
+  "ru": "Сумма ставки (USD)"
+ },
+ "Təmiz sənəd": {
+  "en": "Clean title",
+  "ru": "Чистый документ"
+ },
+ "Təmizlə": {
+  "en": "Clear",
+  "ru": "Очистить"
+ },
+ "Təx. bazar dəyəri:": {
+  "en": "Est. market value:",
+  "ru": "Ориент. рыночная стоимость:"
+ },
+ "Utilizasiya haqqı": {
+  "en": "Recycling fee",
+  "ru": "Утилизационный сбор"
+ },
+ "VIN kodu və ya lot nömrəsi ilə avtomobilinizin harada olduğunu öyrənin.": {
+  "en": "Find out where your car is by VIN or lot number.",
+  "ru": "Узнайте, где ваш автомобиль, по VIN или номеру лота."
+ },
+ "VIN və ya lot nömrəsi": {
+  "en": "VIN or lot number",
+  "ru": "VIN или номер лота"
+ },
+ "VIN və ya lot nömrəsi ilə daşınma statusu.": {
+  "en": "Shipping status by VIN or lot number.",
+  "ru": "Статус доставки по VIN или номеру лота."
+ },
+ "Vaxtlı hərrac (Timed)": {
+  "en": "Timed auction",
+  "ru": "Аукцион по времени (Timed)"
+ },
+ "Vəziyyət:": {
+  "en": "Condition:",
+  "ru": "Состояние:"
+ },
+ "WhatsApp ilə davam et": {
+  "en": "Continue on WhatsApp",
+  "ru": "Продолжить в WhatsApp"
+ },
+ "WhatsApp ilə yaz": {
+  "en": "Write on WhatsApp",
+  "ru": "Написать в WhatsApp"
+ },
+ "Xidmət haqqında": {
+  "en": "About the service",
+  "ru": "Об услуге"
+ },
+ "Xidmət tapılmadı": {
+  "en": "Service not found",
+  "ru": "Услуга не найдена"
+ },
+ "Xidmətlər": {
+  "en": "Services",
+  "ru": "Услуги"
+ },
+ "Xidmətlər — GLB Logistics": {
+  "en": "Services — GLB Logistics",
+  "ru": "Услуги — GLB Logistics"
+ },
+ "Xidmətlərimiz": {
+  "en": "Our services",
+  "ru": "Наши услуги"
+ },
+ "Xəbər tapılmadı": {
+  "en": "News not found",
+  "ru": "Новость не найдена"
+ },
+ "Xəbərlər": {
+  "en": "News",
+  "ru": "Новости"
+ },
+ "Xəbərlər — GLB Logistics": {
+  "en": "News — GLB Logistics",
+  "ru": "Новости — GLB Logistics"
+ },
+ "Xəritə": {
+  "en": "Map",
+  "ru": "Карта"
+ },
+ "Xəta baş verdi": {
+  "en": "Something went wrong",
+  "ru": "Произошла ошибка"
+ },
+ "Yanacaq növü": {
+  "en": "Fuel type",
+  "ru": "Тип топлива"
+ },
+ "Yanacaq növü:": {
+  "en": "Fuel type:",
+  "ru": "Тип топлива:"
+ },
+ "Yaxın 10 gün": {
+  "en": "Next 10 days",
+  "ru": "Ближайшие 10 дней"
+ },
+ "Yaxın 10 gündə": {
+  "en": "In the next 10 days",
+  "ru": "В ближайшие 10 дней"
+ },
+ "Yekun qiymət": {
+  "en": "Total price",
+  "ru": "Итоговая цена"
+ },
+ "Yekun qiyməti hesablayın": {
+  "en": "Calculate the total price",
+  "ru": "Рассчитайте итоговую цену"
+ },
+ "Yeni müraciət": {
+  "en": "New request",
+  "ru": "Новая заявка"
+ },
+ "Yeni müştərilər": {
+  "en": "New customers",
+  "ru": "Новые клиенты"
+ },
+ "Yeni əlavə olunan": {
+  "en": "Newly added",
+  "ru": "Новые поступления"
+ },
+ "Yerli bazar qiyməti": {
+  "en": "Local market price",
+  "ru": "Местная рыночная цена"
+ },
+ "Yerli bazar qiyməti:": {
+  "en": "Local market price:",
+  "ru": "Местная рыночная цена:"
+ },
+ "Yürüş": {
+  "en": "Mileage",
+  "ru": "Пробег"
+ },
+ "Yürüş:": {
+  "en": "Mileage:",
+  "ru": "Пробег:"
+ },
+ "Yürüşə görə": {
+  "en": "By mileage",
+  "ru": "По пробегу"
+ },
+ "Zədə:": {
+  "en": "Damage:",
+  "ru": "Повреждение:"
+ },
+ "bazar qiymətindən ucuz": {
+  "en": "below market price",
+  "ru": "дешевле рынка"
+ },
+ "ilə razıyam": {
+  "en": "I agree with",
+  "ru": "Я согласен с"
+ },
+ "satışda": {
+  "en": "for sale",
+  "ru": "в продаже"
+ },
+ "xidmətlər": {
+  "en": "services",
+  "ru": "услуги"
+ },
+ "{0} {1} — Bakıda satışda | GLB Logistics": {
+  "en": "{0} {1} — for sale in Baku | GLB Logistics",
+  "ru": "{0} {1} — в продаже в Баку | GLB Logistics"
+ },
+ "{0} {1}, {2}, {3}. Qiymət: ${4}.": {
+  "en": "{0} {1}, {2}, {3}. Price: ${4}.",
+  "ru": "{0} {1}, {2}, {3}. Цена: ${4}."
+ },
+ "{0} — Amerikadan gətirmə qiyməti | GLB Logistics": {
+  "en": "{0} — import price from the USA | GLB Logistics",
+  "ru": "{0} — цена ввоза из США | GLB Logistics"
+ },
+ "{0}, lot #{1}. Yürüş, zədə, hərrac tarixi və Azərbaycana qədər yekun qiymət.": {
+  "en": "{0}, lot #{1}. Mileage, damage, auction date and total price to Azerbaijan.",
+  "ru": "{0}, лот #{1}. Пробег, повреждения, дата аукциона и итоговая цена до Азербайджана."
+ },
+ "{auction} meydançaları (ABŞ – Poti)": {
+  "en": "{auction} yards (USA – Poti)",
+  "ru": "Площадки {auction} (США – Поти)"
+ },
+ "{country} — satışda olan avtomobillər": {
+  "en": "{country} — cars for sale",
+  "ru": "{country} — авто в продаже"
+ },
+ "{count} hissə tapıldı": {
+  "en": "{count} parts found",
+  "ru": "Найдено запчастей: {count}"
+ },
+ "{count} nəticəni göstər": {
+  "en": "Show {count} results",
+  "ru": "Показать результаты: {count}"
+ },
+ "{days} gün {hours} saat": {
+  "en": "{days} d {hours} h",
+  "ru": "{days} д {hours} ч"
+ },
+ "{hours} saat {mins} dəq": {
+  "en": "{hours} h {mins} min",
+  "ru": "{hours} ч {mins} мин"
+ },
+ "{start}-{end} / {total} nəticə göstərilir": {
+  "en": "Showing {start}-{end} of {total} results",
+  "ru": "Показано {start}-{end} из {total}"
+ },
+ "{title} avtomobili {date} tarixində {auction} hərracına çıxarılacaq.": {
+  "en": "{title} will be offered at the {auction} auction on {date}.",
+  "ru": "{title} будет выставлен на аукционе {auction} {date}."
+ },
+ "Çatdırılma": {
+  "en": "Delivery",
+  "ru": "Доставка"
+ },
+ "Çatdırılma ölkəsi": {
+  "en": "Delivery country",
+  "ru": "Страна доставки"
+ },
+ "Çıxış": {
+  "en": "Sign out",
+  "ru": "Выйти"
+ },
+ "Ölkə": {
+  "en": "Country",
+  "ru": "Страна"
+ },
+ "Ölkə və şəhər seçin — həmin şəhərdə satışda olan avtomobillərə baxın": {
+  "en": "Choose a country and city to see cars for sale there",
+  "ru": "Выберите страну и город — посмотрите авто в продаже там"
+ },
+ "Ötürücü": {
+  "en": "Drive",
+  "ru": "Привод"
+ },
+ "Ötürücü:": {
+  "en": "Drive:",
+  "ru": "Привод:"
+ },
+ "Ümumi müraciət": {
+  "en": "General request",
+  "ru": "Общая заявка"
+ },
+ "Ümumi məlumat": {
+  "en": "General information",
+  "ru": "Общая информация"
+ },
+ "İdxal gömrük rüsumu": {
+  "en": "Import customs duty",
+  "ru": "Ввозная пошлина"
+ },
+ "İdxal vergisi": {
+  "en": "Import tax",
+  "ru": "Ввозной налог"
+ },
+ "İl": {
+  "en": "Year",
+  "ru": "Год"
+ },
+ "İl (maks.)": {
+  "en": "Year (max)",
+  "ru": "Год (макс.)"
+ },
+ "İl (min.)": {
+  "en": "Year (min)",
+  "ru": "Год (мин.)"
+ },
+ "İl seçin": {
+  "en": "Choose year",
+  "ru": "Выберите год"
+ },
+ "İl seçmək üçün əvvəlcə marka seçin": {
+  "en": "Choose a make first to select a year",
+  "ru": "Сначала выберите марку, чтобы выбрать год"
+ },
+ "İl:": {
+  "en": "Year:",
+  "ru": "Год:"
+ },
+ "İndi al": {
+  "en": "Buy Now",
+  "ru": "Купить сейчас"
+ },
+ "İndi al (Buy Now)": {
+  "en": "Buy Now",
+  "ru": "Купить сейчас (Buy Now)"
+ },
+ "İndi al:": {
+  "en": "Buy Now:",
+  "ru": "Купить сейчас:"
+ },
+ "İstifadə şərtləri": {
+  "en": "Terms of use",
+  "ru": "Условия использования"
+ },
+ "İstifadəçi": {
+  "en": "User",
+  "ru": "Пользователь"
+ },
+ "İzləmə": {
+  "en": "Tracking",
+  "ru": "Отслеживание"
+ },
+ "İş saatları": {
+  "en": "Working hours",
+  "ru": "Часы работы"
+ },
+ "İşləyir və sürülür": {
+  "en": "Runs and drives",
+  "ru": "Заводится и едет"
+ },
+ "Şifrə": {
+  "en": "Password",
+  "ru": "Пароль"
+ },
+ "Şifrə ən azı 6 simvol olmalıdır": {
+  "en": "Password must be at least 6 characters",
+  "ru": "Пароль должен быть не короче 6 символов"
+ },
+ "Şirkətin adı *": {
+  "en": "Company name *",
+  "ru": "Название компании *"
+ },
+ "Şirkətin adını yazın": {
+  "en": "Enter the company name",
+  "ru": "Введите название компании"
+ },
+ "Şəhər": {
+  "en": "City",
+  "ru": "Город"
+ },
+ "Şəhər seçin": {
+  "en": "Choose city",
+  "ru": "Выберите город"
+ },
+ "Şərtsiz satış": {
+  "en": "Pure sale",
+  "ru": "Безусловная продажа"
+ },
+ "ƏDV (18%)": {
+  "en": "VAT (18%)",
+  "ru": "НДС (18%)"
+ },
+ "Əlaqə": {
+  "en": "Contact",
+  "ru": "Контакты"
+ },
+ "Əlaqə saxlayın": {
+  "en": "Contact us",
+  "ru": "Свяжитесь с нами"
+ },
+ "Əlaqə səhifəsi": {
+  "en": "Contact page",
+  "ru": "Страница контактов"
+ },
+ "Əlaqə — GLB Logistics": {
+  "en": "Contact — GLB Logistics",
+  "ru": "Контакты — GLB Logistics"
+ },
+ "Əlaqədar şəxs *": {
+  "en": "Contact person *",
+  "ru": "Контактное лицо *"
+ },
+ "Əlavə məlumat": {
+  "en": "Additional information",
+  "ru": "Дополнительная информация"
+ },
+ "Əlavə xərclər": {
+  "en": "Extra costs",
+  "ru": "Дополнительные расходы"
+ },
+ "Əlavə zədə": {
+  "en": "Secondary damage",
+  "ru": "Дополнительное повреждение"
+ },
+ "Əlavə zədə:": {
+  "en": "Secondary damage:",
+  "ru": "Доп. повреждение:"
+ },
+ "Əsas Səhifə": {
+  "en": "Home",
+  "ru": "Главная"
+ },
+ "Əsas səhifə": {
+  "en": "Home",
+  "ru": "Главная"
+ },
+ "Əsas səhifəyə qayıt": {
+  "en": "Back to home",
+  "ru": "На главную"
+ },
+ "Əsas zədə": {
+  "en": "Primary damage",
+  "ru": "Основное повреждение"
+ },
+ "Əsas zədə:": {
+  "en": "Primary damage:",
+  "ru": "Основное повреждение:"
+ },
+ "Ətraflı": {
+  "en": "Details",
+  "ru": "Подробнее"
+ },
+ "Ətraflı bax": {
+  "en": "View details",
+  "ru": "Подробнее"
+ },
+ "Ətraflı məlumat": {
+  "en": "More details",
+  "ru": "Подробная информация"
+ },
+ "Əvvəlcə marka seçin": {
+  "en": "Choose a make first",
+  "ru": "Сначала выберите марку"
+ },
+ "Əvvəlki": {
+  "en": "Previous",
+  "ru": "Назад"
+ },
+ "Alt hissə": {
+  "en": "Undercarriage",
+  "ru": "Днище"
+ },
+ "Arxa tərəf": {
+  "en": "Rear end",
+  "ru": "Задняя часть"
+ },
+ "Ağ": {
+  "en": "White",
+  "ru": "Белый"
+ },
+ "Bərpa edilmiş": {
+  "en": "Rebuilt",
+  "ru": "Восстановленный"
+ },
+ "Dəqiq": {
+  "en": "Actual",
+  "ru": "Точный"
+ },
+ "Dəqiq deyil": {
+  "en": "Not actual",
+  "ru": "Неточный"
+ },
+ "Gümüşü": {
+  "en": "Silver",
+  "ru": "Серебристый"
+ },
+ "Hetçbek": {
+  "en": "Hatchback",
+  "ru": "Хэтчбек"
+ },
+ "Hissələri çıxarılıb": {
+  "en": "Stripped",
+  "ru": "Разобран на детали"
+ },
+ "Kiçik əzik/cızıq": {
+  "en": "Minor dents/scratches",
+  "ru": "Мелкие вмятины/царапины"
+ },
+ "Mühərrik işə düşür": {
+  "en": "Engine starts",
+  "ru": "Двигатель заводится"
+ },
+ "Məlum deyil": {
+  "en": "Unknown",
+  "ru": "Неизвестно"
+ },
+ "Qəhvəyi": {
+  "en": "Brown",
+  "ru": "Коричневый"
+ },
+ "Su/sel zədəsi": {
+  "en": "Water/flood",
+  "ru": "Вода/наводнение"
+ },
+ "Texniki nasazlıq": {
+  "en": "Mechanical",
+  "ru": "Механическая неисправность"
+ },
+ "Yan tərəf": {
+  "en": "Side",
+  "ru": "Боковое"
+ },
+ "Yaşıl": {
+  "en": "Green",
+  "ru": "Зелёный"
+ },
+ "Ön": {
+  "en": "Front",
+  "ru": "Передний"
+ },
+ "Ön tərəf": {
+  "en": "Front end",
+  "ru": "Передняя часть"
+ },
+ "İşlənmiş": {
+  "en": "Used",
+  "ru": "Б/у"
+ },
+ "Arxa ötürücü": {
+  "en": "Rear-wheel",
+  "ru": "Задний привод"
+ },
+ "Ön ötürücü": {
+  "en": "Front-wheel",
+  "ru": "Передний привод"
+ },
+ "Aktiv lotlar": {
+  "en": "Active lots",
+  "ru": "Активные лоты"
+ },
+ "Asma": {
+  "en": "Suspension",
+  "ru": "Подвеска"
+ },
+ "Kalkulyator": {
+  "en": "Calculator",
+  "ru": "Калькулятор"
+ },
+ "Koreyadan": {
+  "en": "From Korea",
+  "ru": "Из Кореи"
+ },
+ "Kuzov hissələri": {
+  "en": "Body parts",
+  "ru": "Кузовные детали"
+ },
+ "Optika": {
+  "en": "Lighting",
+  "ru": "Оптика"
+ },
+ "Salon": {
+  "en": "Interior",
+  "ru": "Салон"
+ },
+ "Təkər və disk": {
+  "en": "Wheels and rims",
+  "ru": "Колёса и диски"
+ },
+ "Əyləc sistemi": {
+  "en": "Brakes",
+  "ru": "Тормозная система"
+ },
+ "Avtomobili redaktə et": {
+  "en": "Edit car",
+  "ru": "Редактировать авто"
+ },
+ "Avtomobillərim": {
+  "en": "My cars",
+  "ru": "Мои автомобили"
+ },
+ "Avtomobillərinizi əlavə edin, baxış və WhatsApp kliklərini izləyin.": {
+  "en": "Add your cars and track views and WhatsApp clicks.",
+  "ru": "Добавляйте авто и следите за просмотрами и кликами в WhatsApp."
+ },
+ "Bu avtomobil silinsin?": {
+  "en": "Delete this car?",
+  "ru": "Удалить этот автомобиль?"
+ },
+ "Bu bölmə yalnız təsdiqlənmiş dilerlər üçündür.": {
+  "en": "This section is for approved dealers only.",
+  "ru": "Этот раздел только для подтверждённых дилеров."
+ },
+ "Diler hesabınız yoxlanılır. Təsdiqdən sonra avtomobil əlavə edə biləcəksiniz.": {
+  "en": "Your dealer account is under review. You can add cars once it is approved.",
+  "ru": "Ваш дилерский аккаунт на проверке. После одобрения вы сможете добавлять авто."
+ },
+ "Diler kabineti": {
+  "en": "Dealer cabinet",
+  "ru": "Кабинет дилера"
+ },
+ "Diler kimi qeydiyyatdan keçirəm": {
+  "en": "I'm registering as a dealer",
+  "ru": "Регистрируюсь как дилер"
+ },
+ "Diler müraciətiniz təsdiqlənmədi. Ətraflı məlumat üçün bizimlə əlaqə saxlayın.": {
+  "en": "Your dealer application was not approved. Contact us for details.",
+  "ru": "Ваша заявка дилера не одобрена. Свяжитесь с нами для подробностей."
+ },
+ "Gözləmədə": {
+  "en": "Pending",
+  "ru": "В ожидании"
+ },
+ "Güc (a.g.)": {
+  "en": "Power (hp)",
+  "ru": "Мощность (л.с.)"
+ },
+ "Hələ avtomobil əlavə etməmisiniz.": {
+  "en": "You haven't added any cars yet.",
+  "ru": "Вы ещё не добавили авто."
+ },
+ "Hər abzas yeni sətirdən": {
+  "en": "Each paragraph on a new line",
+  "ru": "Каждый абзац с новой строки"
+ },
+ "Kliklər (30 gün)": {
+  "en": "Clicks (30 days)",
+  "ru": "Клики (30 дней)"
+ },
+ "Ləğv edildi": {
+  "en": "Cancelled",
+  "ru": "Отменена"
+ },
+ "Ləğv et": {
+  "en": "Cancel",
+  "ru": "Отмена"
+ },
+ "Marka, model, il və qiyməti yazın": {
+  "en": "Enter make, model, year and price",
+  "ru": "Укажите марку, модель, год и цену"
+ },
+ "Redaktə et": {
+  "en": "Edit",
+  "ru": "Редактировать"
+ },
+ "Salam, {name}!": {
+  "en": "Hello, {name}!",
+  "ru": "Здравствуйте, {name}!"
+ },
+ "Saytda görünür": {
+  "en": "Live on site",
+  "ru": "На сайте"
+ },
+ "Sil": {
+  "en": "Delete",
+  "ru": "Удалить"
+ },
+ "Tamamlandı": {
+  "en": "Completed",
+  "ru": "Выполнена"
+ },
+ "Təsvir": {
+  "en": "Description",
+  "ru": "Описание"
+ },
+ "Vergüllə ayırın: Dəri salon, Panoramik lyuk": {
+  "en": "Separate with commas: Leather interior, Sunroof",
+  "ru": "Через запятую: Кожаный салон, Люк"
+ },
+ "Versiya": {
+  "en": "Version",
+  "ru": "Версия"
+ },
+ "Xüsusiyyətlər": {
+  "en": "Features",
+  "ru": "Особенности"
+ },
+ "Yadda saxla": {
+  "en": "Save",
+  "ru": "Сохранить"
+ },
+ "Yadda saxlanıldı. Admin yoxladıqdan sonra avtomobil saytda görünəcək.": {
+  "en": "Saved. The car will appear on the site after admin review.",
+  "ru": "Сохранено. Авто появится на сайте после проверки администратором."
+ },
+ "Yeni avtomobil": {
+  "en": "New car",
+  "ru": "Новый автомобиль"
+ },
+ "Yoxlamadadır": {
+  "en": "Under review",
+  "ru": "На проверке"
+ },
+ "Yüklənir...": {
+  "en": "Loading...",
+  "ru": "Загрузка..."
+ },
+ "Yürüş (km)": {
+  "en": "Mileage (km)",
+  "ru": "Пробег (км)"
+ },
+ "{total} klik, son 30 gündə {month}": {
+  "en": "{total} clicks, {month} in the last 30 days",
+  "ru": "{total} кликов, за 30 дней {month}"
+ },
+ "İcrada": {
+  "en": "In progress",
+  "ru": "В работе"
+ },
+ "Şirkət": {
+  "en": "Company",
+  "ru": "Компания"
+ },
+ "Şirkətin adı": {
+  "en": "Company name",
+  "ru": "Название компании"
+ },
+ "Şəkillər": {
+  "en": "Photos",
+  "ru": "Фото"
+ },
+ "E-poçt düzgün deyil": {
+  "en": "Invalid email",
+  "ru": "Некорректный e-mail"
+ },
+ "Bu e-poçt artıq qeydiyyatdan keçib": {
+  "en": "This email is already registered",
+  "ru": "Этот e-mail уже зарегистрирован"
+ },
+ "E-poçt və ya şifrə yanlışdır": {
+  "en": "Wrong email or password",
+  "ru": "Неверный e-mail или пароль"
+ },
+ "Hesabınız bloklanıb": {
+  "en": "Your account is blocked",
+  "ru": "Ваш аккаунт заблокирован"
+ },
+ "Giriş tələb olunur": {
+  "en": "Sign-in required",
+  "ru": "Требуется вход"
+ },
+ "Hazırkı şifrə yanlışdır": {
+  "en": "Current password is wrong",
+  "ru": "Текущий пароль неверен"
+ },
+ "Diler hesabınız hələ təsdiqlənməyib": {
+  "en": "Your dealer account isn't approved yet",
+  "ru": "Ваш дилерский аккаунт ещё не одобрен"
+ },
+ "Yalnız şəkil faylı yükləmək olar": {
+  "en": "Only image files can be uploaded",
+  "ru": "Можно загружать только изображения"
+ },
+ "Tapılmadı": {
+  "en": "Not found",
+  "ru": "Не найдено"
+ },
+ "Avtomobilin adını yazın": {
+  "en": "Enter the car name",
+  "ru": "Укажите название авто"
+ },
+ "Variator": {
+  "en": "CVT",
+  "ru": "Вариатор"
+ },
+ "Robot": {
+  "en": "Robotic",
+  "ru": "Робот"
+ },
+ "Diler kimi qeydiyyatdan keçin — təsdiqdən sonra avtomobillərinizi özünüz əlavə edib klikləri izləyəcəksiniz.": {
+  "en": "Register as a dealer — once approved you can add your cars yourself and track clicks.",
+  "ru": "Зарегистрируйтесь как дилер — после одобрения вы сами добавите авто и будете видеть клики."
+ },
+ "Diler kimi qeydiyyat": {
+  "en": "Register as a dealer",
+  "ru": "Регистрация дилера"
+ },
+ "Diler ol — GLB Logistics": {
+  "en": "Become a dealer — GLB Logistics",
+  "ru": "Стать дилером — GLB Logistics"
+ },
+ "Qeydiyyat — GLB Logistics": {
+  "en": "Sign up — GLB Logistics",
+  "ru": "Регистрация — GLB Logistics"
+ },
+ "Daxil ol — GLB Logistics": {
+  "en": "Sign in — GLB Logistics",
+  "ru": "Вход — GLB Logistics"
+ },
+ "Profil — GLB Logistics": {
+  "en": "Profile — GLB Logistics",
+  "ru": "Профиль — GLB Logistics"
+ }
+}

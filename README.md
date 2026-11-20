@@ -15,6 +15,8 @@ npm run db:seed             # cədvəlləri yaradır və başlanğıc məlumatı
 npm run dev                 # http://localhost:4000
 ```
 
+`npm run admin:reset` — `.env`-dəki `ADMIN_EMAIL` / `ADMIN_PASSWORD` ilə admini yaradır və ya şifrəsini yeniləyir (giriş alınmayanda).
+
 `npm run db:reset` bütün cədvəlləri silib yenidən yaradır — yalnız ilk quraşdırmada istifadə et.
 
 Node 22+ lazımdır (`.env` faylı `node --env-file` ilə oxunur, əlavə paket yoxdur).
@@ -48,14 +50,52 @@ Kolleksiya cədvəlləri eyni quruluşdadır:
 | `sort_order` | integer | siyahıda sıra |
 | `data` | jsonb | qalan bütün sahələr |
 
-Kolleksiyalar: `lots`, `cars`, `korea_cars`, `parts`, `catalog`, `services`, `pages`, `news`, `hero_slides`, `brands`.
+Kolleksiyalar: `lots`, `cars`, `korea_cars`, `parts`, `part_types`, `catalog`, `services`, `pages`, `news`, `hero_slides`, `brands`.
+
+Tərcümə olunan mətnlər elementin `data.i18n` sahəsindədir: `{ "en": { "title": "..." }, "ru": { ... } }`. Boş qalan sahədə sayt əsas dildəki mətni göstərir.
 
 Digər cədvəllər:
 
-- `settings` — `site`, `tariffs`, `price_history`, `tracking_sample` (açar → JSON)
+- `settings` — `site`, `tariffs`, `price_history`, `tracking_sample`, `menus`, `locations` (açar → JSON)
 - `shipping_prices` — auksion, meydança, qiymət (Excel-dən gələn 524 sətir)
 - `requests` — saytdakı formalardan gələn müraciətlər
-- `admins` — admin istifadəçilər
+- `admins` — admin istifadəçilər, `role`: `admin` / `manager` / `editor`
+- `users` — saytda qeydiyyatdan keçənlər, `role`: `user` / `dealer`, `dealer_status`: `pending` / `approved` / `rejected`
+- `languages`, `translations` — dillər və interfeys mətnləri (açar = Azərbaycan dilindəki mətn)
+- `market_prices` — yerli bazar qiymətləri (ölkə, marka, model, il)
+- `car_clicks` — avtomobil səhifəsində WhatsApp/zəng klikləri
+- `audit_logs` — admin paneldə edilən dəyişikliklərin jurnalı
+
+## Rollar
+
+| Rol | Bölmələr |
+|---|---|
+| admin | hamısı |
+| manager | idarə paneli, müraciətlər, istifadəçilər, kontent, qiymətlər |
+| editor | idarə paneli, kontent, sayt ayarları, tərcümələr |
+
+İcazələr `src/auth.js` → `PERMISSIONS`-dədir.
+
+## İstifadəçi API (`/api/user`)
+
+| Metod | Ünvan | Nə edir |
+|---|---|---|
+| POST | `/register` | `{ name, email, phone, password, company? }` — `company` varsa diler kimi (təsdiq gözləyir) |
+| POST | `/login` | `{ email, password }` → `{ token, user }` |
+| GET/PUT | `/me` | Profil |
+| PUT | `/password` | `{ current, next }` |
+| GET | `/requests` | İstifadəçinin müraciətləri |
+| GET/POST/PUT/DELETE | `/cars`, `/cars/:id` | Diler kabineti (yalnız təsdiqlənmiş diler). Yeni avtomobil admin təsdiqinə qədər gizlidir |
+| POST | `/upload` | Diler şəkli |
+
+## Saytı yenilə düyməsi
+
+Sayt GitHub Pages-dədirsə, admin paneldəki "Saytı yenilə" düyməsi GitHub Actions-ı işə salır. `.env`-də yaz:
+
+```
+GITHUB_REPO=istifadeci/GLB-Auto-Trade
+GITHUB_TOKEN=github_pat_...   # Fine-grained token, həmin repo üçün "Contents: Read and write"
+```
 
 ## Public API
 
