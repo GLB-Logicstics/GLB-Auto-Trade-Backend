@@ -144,3 +144,7 @@ Saytların HTML/API quruluşu dəyişsə, xəta admin paneldə "Tapılmayanlar" 
 ## Avtomobil izləmə
 
 `shipments` kolleksiyası (admin paneldə "Avtomobil izləmə"). Sayt `GET /api/public/tracking?code=VIN_və_ya_LOT` ilə yalnız bir avtomobili alır, siyahı açıq deyil.
+
+## Deploy
+
+Vercel + Neon + Cloudinary üçün addımlar: [DEPLOY.md](DEPLOY.md).

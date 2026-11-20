@@ -1,7 +1,7 @@
 import { query, queryOne } from './db.js'
 
 const DAY = 24 * 60 * 60 * 1000
-const DELAY = 1500
+const DELAY = Number(process.env.MARKET_DELAY) || 1000
 const MIN_LISTINGS = 3
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
