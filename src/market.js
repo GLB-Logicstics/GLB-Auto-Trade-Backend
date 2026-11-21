@@ -2,8 +2,9 @@ import { query, queryOne } from './db.js'
 
 const DAY = 24 * 60 * 60 * 1000
 const STALE = 6 * 60 * 1000
-const PARALLEL = Number(process.env.MARKET_PARALLEL) || 6
-const SEARCH_UNTIL = 180 * 1000
+const PARALLEL = Number(process.env.MARKET_PARALLEL) || 3
+const SEARCH_UNTIL = 150 * 1000
+const STOP_AT = 270 * 1000
 const COUNTRIES = { aze: 'Azerbaijan', geo: 'Georgia' }
 const SITES = { aze: 'turbo.az', geo: 'myauto.ge' }
 
@@ -52,6 +53,8 @@ const gemini = {
     if (!response.ok) {
       const error = new Error(`Gemini cavabı: ${response.status} ${result.error?.message || ''}`.trim())
       error.status = response.status
+      const retry = (result.error?.details || []).find((item) => item.retryDelay)?.retryDelay
+      error.retryAfter = retry ? Math.ceil(parseFloat(retry) * 1000) : 0
       throw error
     }
     const text = (result.candidates?.[0]?.content?.parts || []).map((part) => part.text || '').join('')
@@ -67,13 +70,13 @@ function readPrice(value) {
   return { price, listings: Math.max(0, Math.round(Number(value?.listings) || 0)) }
 }
 
-async function estimate(target, deadline) {
+async function estimate(target, deadline, stopAt) {
   const found = {}
   let lastError = ''
 
   if (gemini.search && Date.now() < deadline) {
     try {
-      const answer = await gemini.ask(target, Object.keys(COUNTRIES), true, 75000)
+      const answer = await gemini.ask(target, Object.keys(COUNTRIES), true, 60000)
       for (const country of Object.keys(COUNTRIES)) {
         const value = readPrice(answer[country])
         if (value) found[country] = { ...value, source: value.listings ? `AI · Google axtarışı · ${value.listings} elan` : 'AI · Google axtarışı · təxmini' }
@@ -84,18 +87,20 @@ async function estimate(target, deadline) {
     }
   }
 
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     const missing = Object.keys(COUNTRIES).filter((country) => !found[country])
-    if (!missing.length) break
+    if (!missing.length || Date.now() > stopAt) break
     try {
-      const answer = await gemini.ask(target, missing, false, 40000)
+      const answer = await gemini.ask(target, missing, false, Math.min(40000, Math.max(5000, stopAt - Date.now())))
       for (const country of missing) {
         const value = readPrice(answer[country])
         if (value) found[country] = { ...value, listings: 0, source: 'AI təxmini' }
       }
     } catch (error) {
       lastError = error.message
-      await wait(2000)
+      const pause = Math.min(30000, error.retryAfter || 2000 * 2 ** attempt)
+      if (Date.now() + pause > stopAt) break
+      await wait(pause)
     }
   }
 
@@ -146,6 +151,7 @@ export async function syncMarketPrices() {
 
   const results = []
   const deadline = Date.now() + SEARCH_UNTIL
+  const stopAt = Date.now() + STOP_AT
 
   try {
     if (!gemini.enabled()) throw new Error('GEMINI_API_KEY verilməyib')
@@ -155,7 +161,7 @@ export async function syncMarketPrices() {
     const worker = async () => {
       while (queue.length) {
         const target = queue.shift()
-        const { found, error } = await estimate(target, deadline)
+        const { found, error } = await estimate(target, deadline, stopAt)
         for (const country of Object.keys(COUNTRIES)) {
           const value = found[country]
           const result = { source: 'AI', country, make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
