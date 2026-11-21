@@ -1,165 +1,52 @@
 import { query, queryOne } from './db.js'
 
 const DAY = 24 * 60 * 60 * 1000
-const DELAY = Number(process.env.MARKET_DELAY) || 400
 const STALE = 6 * 60 * 1000
-const AI_PARALLEL = 4
-const MIN_LISTINGS = 3
-const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
-  'Accept-Language': 'az,en;q=0.8',
-}
+const PARALLEL = Number(process.env.MARKET_PARALLEL) || 6
+const SEARCH_UNTIL = 180 * 1000
+const COUNTRIES = { aze: 'Azerbaijan', geo: 'Georgia' }
+const SITES = { aze: 'turbo.az', geo: 'myauto.ge' }
 
 let running = false
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-const clean = (text) => String(text || '').trim().toUpperCase()
 
-async function getText(url) {
-  await wait(DELAY)
-  const response = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(15000) })
-  if (!response.ok) throw new Error(`${new URL(url).host} cavabı: ${response.status}`)
-  return response.text()
-}
-
-async function getJson(url) {
-  return JSON.parse(await getText(url))
-}
-
-function median(values) {
-  const sorted = [...values].sort((a, b) => a - b)
-  const middle = Math.floor(sorted.length / 2)
-  return sorted.length % 2 ? sorted[middle] : Math.round((sorted[middle - 1] + sorted[middle]) / 2)
-}
-
-function withoutOutliers(values) {
-  if (values.length < 5) return values
-  const center = median(values)
-  return values.filter((value) => value > center * 0.5 && value < center * 1.8)
-}
-
-function selectOptions(html, id) {
-  const match = html.match(new RegExp(`<select[^>]*id="${id}"[^>]*>([\\s\\S]*?)</select>`))
-  if (!match) return []
-  return [...match[1].matchAll(/<option([^>]*)value="(\d+)"[^>]*>([^<]+)<\/option>/g)].map((item) => ({
-    attrs: item[1],
-    value: item[2],
-    label: clean(item[3]),
-  }))
-}
-
-const turbo = {
-  name: 'turbo.az',
-  country: 'aze',
-  makes: null,
-  models: null,
-
-  async load() {
-    if (this.makes) return
-    const html = await getText('https://turbo.az/autos')
-    this.makes = selectOptions(html, 'q_make')
-    this.models = selectOptions(html, 'q_model')
-    if (!this.makes.length) throw new Error('turbo.az: marka siyahısı oxunmadı (sayt quruluşu dəyişib)')
-  },
-
-  async prices(target, rates) {
-    await this.load()
-    const make = this.makes.find((item) => item.label === target.make)
-    if (!make) throw new Error('turbo.az-da marka tapılmadı')
-
-    const model = this.models.find(
-      (item) => item.label === target.model && new RegExp(`(class|data-make[^=]*)="${make.value}"`).test(item.attrs),
-    )
-    if (!model) throw new Error('turbo.az-da model tapılmadı')
-
-    const params = new URLSearchParams({
-      'q[make][]': make.value,
-      'q[model][]': model.value,
-      'q[year_from]': String(target.year),
-      'q[year_to]': String(target.year),
-    })
-    const html = await getText(`https://turbo.az/autos?${params}`)
-    const values = []
-    for (const item of html.matchAll(/class="product-price[^"]*"[^>]*>\s*([\d\s]+)\s*<span>\s*(AZN|USD|EUR|\$|€)/g)) {
-      const amount = Number(item[1].replace(/\s/g, ''))
-      const currency = item[2]
-      if (currency === 'AZN') values.push(Math.round(amount / rates.azn))
-      else if (currency === 'USD' || currency === '$') values.push(amount)
-    }
-    return values
-  },
-}
-
-const myauto = {
-  name: 'myauto.ge',
-  country: 'geo',
-  makes: null,
-  models: {},
-
-  async load() {
-    if (this.makes) return
-    const list = await getJson('https://static.my.ge/myauto/js/mans.json')
-    this.makes = list.map((item) => ({ id: String(item.man_id), label: clean(item.man_name) }))
-  },
-
-  async prices(target) {
-    await this.load()
-    const make = this.makes.find((item) => item.label === target.make)
-    if (!make) throw new Error('myauto.ge-də marka tapılmadı')
-
-    if (!this.models[make.id]) {
-      const result = await getJson(`https://api2.myauto.ge/ka/getManModels?man_id=${make.id}`)
-      this.models[make.id] = (result.data || []).map((item) => ({ id: String(item.model_id), label: clean(item.model_name) }))
-    }
-    const model = this.models[make.id].find((item) => item.label === target.model)
-    if (!model) throw new Error('myauto.ge-də model tapılmadı')
-
-    const params = new URLSearchParams({
-      TypeID: '0',
-      ForRent: '0',
-      Mans: `${make.id}.${model.id}`,
-      ProdYearFrom: String(target.year),
-      ProdYearTo: String(target.year),
-      CurrencyID: '1',
-      Page: '1',
-    })
-    const result = await getJson(`https://api2.myauto.ge/ka/products?${params}`)
-    const items = (result.data && result.data.items) || []
-    return items.map((item) => Number(item.price_usd)).filter((value) => value > 0)
-  },
-}
-
-const ai = {
-  name: 'AI',
+const gemini = {
   url: process.env.GEMINI_URL || 'https://generativelanguage.googleapis.com/v1beta/models',
-  grounded: true,
+  search: true,
 
   enabled() {
     return Boolean(process.env.GEMINI_API_KEY)
   },
 
-  prompt(target) {
+  prompt(target, countries, search) {
+    const car = `${target.year} ${target.make} ${target.model}`
+    const lines = countries.map((country) => `"${country}": {"price": number, "listings": number}`).join(', ')
     return [
-      `Find current used car listings for a ${target.year} ${target.make} ${target.model}.`,
-      'Look at turbo.az for Azerbaijan and myauto.ge for Georgia (other local listing sites of the same country are fine too).',
-      'For each country give the median asking price in US dollars (convert AZN or GEL to USD at today\'s rate) and how many listings you based it on.',
-      'Only count listings of exactly this model and year. If you cannot find real listings for a country, use null.',
+      search
+        ? `Find current used car listings for a ${car} in ${countries.map((country) => `${COUNTRIES[country]} (${SITES[country]})`).join(' and ')}.`
+        : `Estimate the current used car market price of a ${car} in ${countries.map((country) => COUNTRIES[country]).join(' and ')}.`,
+      'For each country give the typical (median) asking price in US dollars. Convert AZN or GEL to USD at the current rate.',
+      search
+        ? 'Prefer listings of exactly this model and year. If there are too few, use the closest years or trims and your knowledge of that market.'
+        : 'Use your knowledge of that local market, import costs and similar cars.',
+      'You must always give a realistic number for every country, never null or zero.',
+      '"listings" is how many real listings the price is based on (0 if it is your estimate).',
       'Answer with JSON only, no other text:',
-      '{"aze": {"price": number|null, "listings": number}, "geo": {"price": number|null, "listings": number}}',
+      `{${lines}}`,
     ].join('\n')
   },
 
-  async ask(target, grounded) {
+  async ask(target, countries, search, timeout) {
     const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash'
-    const body = {
-      contents: [{ parts: [{ text: this.prompt(target) }] }],
-      ...(grounded ? { tools: [{ google_search: {} }] } : {}),
-    }
     const response = await fetch(`${this.url}/${model}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
-      body: JSON.stringify(body),
-      signal: AbortSignal.timeout(60000),
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: this.prompt(target, countries, search) }] }],
+        ...(search ? { tools: [{ google_search: {} }] } : {}),
+      }),
+      signal: AbortSignal.timeout(timeout),
     })
     const result = await response.json().catch(() => ({}))
     if (!response.ok) {
@@ -172,25 +59,47 @@ const ai = {
     if (!json) throw new Error('Gemini cavabı oxunmadı')
     return JSON.parse(json[0])
   },
-
-  async estimate(target) {
-    if (this.grounded) {
-      try {
-        return { ...(await this.ask(target, true)), grounded: true }
-      } catch (error) {
-        if (![400, 403, 429].includes(error.status)) throw error
-        this.grounded = false
-      }
-    }
-    return { ...(await this.ask(target, false)), grounded: false }
-  },
 }
 
-const sources = [turbo, myauto]
-
-function aiPrice(value) {
+function readPrice(value) {
   const price = Math.round(Number(value?.price))
-  return price >= 500 && price <= 1000000 ? price : 0
+  if (!(price >= 500 && price <= 1000000)) return null
+  return { price, listings: Math.max(0, Math.round(Number(value?.listings) || 0)) }
+}
+
+async function estimate(target, deadline) {
+  const found = {}
+  let lastError = ''
+
+  if (gemini.search && Date.now() < deadline) {
+    try {
+      const answer = await gemini.ask(target, Object.keys(COUNTRIES), true, 75000)
+      for (const country of Object.keys(COUNTRIES)) {
+        const value = readPrice(answer[country])
+        if (value) found[country] = { ...value, source: value.listings ? `AI · Google axtarışı · ${value.listings} elan` : 'AI · Google axtarışı · təxmini' }
+      }
+    } catch (error) {
+      lastError = error.message
+      if ([400, 403].includes(error.status)) gemini.search = false
+    }
+  }
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const missing = Object.keys(COUNTRIES).filter((country) => !found[country])
+    if (!missing.length) break
+    try {
+      const answer = await gemini.ask(target, missing, false, 40000)
+      for (const country of missing) {
+        const value = readPrice(answer[country])
+        if (value) found[country] = { ...value, listings: 0, source: 'AI təxmini' }
+      }
+    } catch (error) {
+      lastError = error.message
+      await wait(2000)
+    }
+  }
+
+  return { found, error: lastError }
 }
 
 async function targets() {
@@ -235,76 +144,40 @@ export async function syncMarketPrices() {
   running = true
   await saveStatus({ ...before, startedAt: new Date().toISOString() })
 
-  const tariffs = await queryOne("select value from settings where key = 'tariffs'")
-  const rates = { azn: Number(tariffs?.value?.aznRate) || 1.7 }
   const results = []
-
-  const saved = new Set()
-  const save = async (country, target, price, source) => {
-    await query(
-      `insert into market_prices (country, make, model, year, price, source) values ($1, $2, $3, $4, $5, $6)
-       on conflict (country, make, model, year)
-       do update set price = excluded.price, source = excluded.source, updated_at = now() returning id`,
-      [country, target.make, target.model, target.year, price, source],
-    )
-    saved.add(`${country}|${target.make}|${target.model}|${target.year}`)
-  }
+  const deadline = Date.now() + SEARCH_UNTIL
 
   try {
-    const list = await targets()
+    if (!gemini.enabled()) throw new Error('GEMINI_API_KEY verilməyib')
+    gemini.search = true
 
-    for (const source of sources) {
-      source.makes = null
-      let blocked = ''
-      for (const target of list) {
-        const result = { source: source.name, make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
-        try {
-          if (blocked) throw new Error(blocked)
-          const values = withoutOutliers(await source.prices(target, rates))
-          result.count = values.length
-          if (values.length < MIN_LISTINGS) throw new Error(`az elan var (${values.length})`)
-
-          result.price = median(values)
-          await save(source.country, target, result.price, `${source.name} · ${values.length} elan`)
-        } catch (error) {
-          result.error = error.message
-          if (!blocked && /cavabı: 40[13]|cavabı: 429|fetch failed|aborted|timeout/i.test(error.message)) blocked = `${source.name} bağlantını qəbul etmir (${error.message})`
-        }
-        results.push(result)
-      }
-    }
-
-    if (ai.enabled()) {
-      ai.grounded = true
-      const pending = list.filter((target) => ['aze', 'geo'].some((country) => !saved.has(`${country}|${target.make}|${target.model}|${target.year}`)))
-      const runOne = async (target) => {
-        const missing = ['aze', 'geo'].filter((country) => !saved.has(`${country}|${target.make}|${target.model}|${target.year}`))
-        try {
-          const answer = await ai.estimate(target)
-          for (const country of missing) {
-            const label = country === 'aze' ? 'Azərbaycan' : 'Gürcüstan'
-            const result = { source: 'AI', make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
-            const price = aiPrice(answer[country])
-            const listings = Math.max(0, Math.round(Number(answer[country]?.listings) || 0))
-            result.count = listings
-            if (!price) result.error = `${label}: AI qiymət tapmadı`
-            else if (answer.grounded && listings < MIN_LISTINGS) result.error = `${label}: az elan var (${listings})`
-            else {
-              result.price = price
-              await save(country, target, price, answer.grounded ? `AI · Google axtarışı · ${listings} elan` : 'AI təxmini')
-            }
-            results.push(result)
+    const queue = await targets()
+    const worker = async () => {
+      while (queue.length) {
+        const target = queue.shift()
+        const { found, error } = await estimate(target, deadline)
+        for (const country of Object.keys(COUNTRIES)) {
+          const value = found[country]
+          const result = { source: 'AI', country, make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
+          if (value) {
+            result.price = value.price
+            result.count = value.listings
+            await query(
+              `insert into market_prices (country, make, model, year, price, source) values ($1, $2, $3, $4, $5, $6)
+               on conflict (country, make, model, year)
+               do update set price = excluded.price, source = excluded.source, updated_at = now() returning id`,
+              [country, target.make, target.model, target.year, value.price, value.source],
+            )
+          } else {
+            result.error = `${country === 'aze' ? 'Azərbaycan' : 'Gürcüstan'}: ${error || 'AI qiymət vermədi'}`
           }
-        } catch (error) {
-          results.push({ source: 'AI', make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: error.message })
+          results.push(result)
         }
       }
-      const queue = [...pending]
-      const worker = async () => {
-        while (queue.length) await runOne(queue.shift())
-      }
-      await Promise.all(Array.from({ length: AI_PARALLEL }, worker))
     }
+    await Promise.all(Array.from({ length: PARALLEL }, worker))
+  } catch (error) {
+    results.push({ source: 'AI', make: '', model: '', year: 0, count: 0, price: 0, error: error.message })
   } finally {
     running = false
     const previous = await storedStatus()

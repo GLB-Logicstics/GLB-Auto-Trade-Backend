@@ -137,11 +137,12 @@ Yüklənən şəkillər `uploads/` qovluğunda saxlanılır. Render kimi disk sa
 
 ## Yerli bazar qiymətləri (avtomatik)
 
-`src/market.js` kataloqdakı və satışdakı hər marka/model/il üçün turbo.az (Azərbaycan) və myauto.ge (Gürcüstan) elanlarına baxır, ən azı 3 elan varsa median qiyməti `market_prices`-ə yazır. Server işləyəndə gündə bir dəfə özü işləyir, admin paneldə "İndi yenilə" düyməsi də var. Söndürmək üçün `.env`: `MARKET_SYNC=off`.
+`src/market.js` kataloqdakı və satışdakı hər marka/model/il üçün Gemini-dən (Google AI) Azərbaycan və Gürcüstan bazarında orta qiyməti soruşur və `market_prices`-ə yazır. Gemini əvvəlcə Google axtarışı ilə turbo.az və myauto.ge elanlarına baxır (mənbə: `AI · Google axtarışı · N elan`). Kifayət qədər elan tapılmasa, ən yaxın il və versiyalara əsasən təxmin edir. Axtarış alınmasa, axtarışsız təxmin verir (mənbə: `AI təxmini`). Beləliklə hər avtomobilə qiymət yazılır.
 
-turbo.az və myauto.ge data-mərkəz serverlərindən (Vercel və s.) gələn sorğuları bloklayır. Ona görə canlı serverdə qiyməti AI tapır: `GEMINI_API_KEY` verilibsə, birbaşa tapılmayan hər avtomobil üçün Gemini Google axtarışı ilə həmin saytlardakı elanlara baxıb median qiyməti qaytarır (mənbə: `AI · Google axtarışı · N elan`). Açar pulsuz plandadırsa və Google axtarışı əlçatan deyilsə, Gemini axtarışsız təxmin edir (mənbə: `AI təxmini`). Model `GEMINI_MODEL` ilə dəyişdirilə bilər (standart: `gemini-3.5-flash`). Admin ağlabatan olmayan qiyməti silə bilər.
-
-Saytların HTML/API quruluşu dəyişsə, xəta admin paneldə "Tapılmayanlar" siyahısında görünür — onda `src/market.js`-də həmin mənbənin `prices()` funksiyasını yeniləmək lazımdır.
+- Açar: `GEMINI_API_KEY` (Google AI Studio). Model: `GEMINI_MODEL`, standart `gemini-3.5-flash`.
+- Google axtarışı yalnız billing aktiv olan layihədə işləyir. Billing yoxdursa, bütün qiymətlər `AI təxmini` olur.
+- Gündə bir dəfə Vercel Cron ilə, admin paneldə isə "İndi yenilə" ilə işləyir. Söndürmək üçün `.env`: `MARKET_SYNC=off`.
+- Admin ağlabatan olmayan qiyməti silə bilər, növbəti yeniləmədə yenidən hesablanır.
 
 ## Avtomobil izləmə
 
