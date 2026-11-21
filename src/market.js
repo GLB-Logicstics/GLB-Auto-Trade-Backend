@@ -58,16 +58,35 @@ const gemini = {
       throw error
     }
     const text = (result.candidates?.[0]?.content?.parts || []).map((part) => part.text || '').join('')
-    const json = text.match(/\{[\s\S]*\}/)
-    if (!json) throw new Error('Gemini cavabı oxunmadı')
-    return JSON.parse(json[0])
+    return parseJson(text)
   },
 }
 
+function toNumber(value) {
+  if (typeof value === 'number') return value
+  const text = String(value ?? '').replace(/[\s,]/g, '')
+  const match = text.match(/\d+(\.\d+)?/)
+  if (!match) return NaN
+  return Number(match[0]) * (/k$/i.test(text) ? 1000 : 1)
+}
+
+function parseJson(text) {
+  const clean = text.replace(/```(json)?/gi, '')
+  const start = clean.indexOf('{')
+  for (let end = clean.lastIndexOf('}'); start !== -1 && end > start; end = clean.lastIndexOf('}', end - 1)) {
+    try {
+      return JSON.parse(clean.slice(start, end + 1).replace(/,\s*([}\]])/g, '$1'))
+    } catch {
+      continue
+    }
+  }
+  throw new Error('Gemini cavabı oxunmadı')
+}
+
 function readPrice(value) {
-  const price = Math.round(Number(value?.price))
+  const price = Math.round(toNumber(value?.price))
   if (!(price >= 500 && price <= 1000000)) return null
-  return { price, listings: Math.max(0, Math.round(Number(value?.listings) || 0)) }
+  return { price, listings: Math.max(0, Math.round(toNumber(value?.listings) || 0)) }
 }
 
 async function estimate(target, deadline, stopAt) {
@@ -109,11 +128,17 @@ async function estimate(target, deadline, stopAt) {
 
 async function targets() {
   const rows = await query(
-    `select upper(data->>'make') as make, upper(data->>'model') as model, (data->>'year')::int as year from catalog where is_active
-     union
-     select upper(data->>'make'), upper(data->>'model'), (data->>'year')::int from cars where is_active`,
+    `with list as (
+       select upper(trim(data->>'make')) as make, upper(trim(data->>'model')) as model, (data->>'year')::int as year from catalog where is_active
+       union
+       select upper(trim(data->>'make')), upper(trim(data->>'model')), (data->>'year')::int from cars where is_active
+     )
+     select list.make, list.model, list.year, count(m.id) as known, min(m.updated_at) as updated
+     from list left join market_prices m on m.make = list.make and m.model = list.model and m.year = list.year
+     group by list.make, list.model, list.year
+     order by count(m.id), min(m.updated_at) nulls first`,
   )
-  return rows.filter((row) => row.make && row.model && row.year)
+  return rows.filter((row) => row.make && row.model && row.year).map(({ make, model, year }) => ({ make, model, year }))
 }
 
 async function saveStatus(value) {
@@ -185,6 +210,9 @@ export async function syncMarketPrices() {
   } catch (error) {
     results.push({ source: 'AI', make: '', model: '', year: 0, count: 0, price: 0, error: error.message })
   } finally {
+    const failed = results.filter((item) => item.error)
+    console.log(`Bazar qiymətləri: ${results.length - failed.length} tapıldı, ${failed.length} tapılmadı`)
+    for (const item of failed) console.log(`Bazar qiyməti tapılmadı: ${item.make} ${item.model} ${item.year} — ${item.error}`)
     running = false
     const previous = await storedStatus()
     await saveStatus({ enabled: previous.enabled !== false, lastRun: new Date().toISOString(), startedAt: '', results })
