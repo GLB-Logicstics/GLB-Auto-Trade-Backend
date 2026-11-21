@@ -139,6 +139,8 @@ Yüklənən şəkillər `uploads/` qovluğunda saxlanılır. Render kimi disk sa
 
 `src/market.js` kataloqdakı və satışdakı hər marka/model/il üçün turbo.az (Azərbaycan) və myauto.ge (Gürcüstan) elanlarına baxır, ən azı 3 elan varsa median qiyməti `market_prices`-ə yazır. Server işləyəndə gündə bir dəfə özü işləyir, admin paneldə "İndi yenilə" düyməsi də var. Söndürmək üçün `.env`: `MARKET_SYNC=off`.
 
+turbo.az və myauto.ge data-mərkəz serverlərindən (Vercel və s.) gələn sorğuları bloklayır. Ona görə canlı serverdə qiyməti AI tapır: `GEMINI_API_KEY` verilibsə, birbaşa tapılmayan hər avtomobil üçün Gemini Google axtarışı ilə həmin saytlardakı elanlara baxıb median qiyməti qaytarır (mənbə: `AI · Google axtarışı · N elan`). Açar pulsuz plandadırsa və Google axtarışı əlçatan deyilsə, Gemini axtarışsız təxmin edir (mənbə: `AI təxmini`). Model `GEMINI_MODEL` ilə dəyişdirilə bilər (standart: `gemini-3.5-flash`). Admin ağlabatan olmayan qiyməti silə bilər.
+
 Saytların HTML/API quruluşu dəyişsə, xəta admin paneldə "Tapılmayanlar" siyahısında görünür — onda `src/market.js`-də həmin mənbənin `prices()` funksiyasını yeniləmək lazımdır.
 
 ## Avtomobil izləmə

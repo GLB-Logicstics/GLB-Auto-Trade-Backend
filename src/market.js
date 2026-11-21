@@ -3,6 +3,7 @@ import { query, queryOne } from './db.js'
 const DAY = 24 * 60 * 60 * 1000
 const DELAY = Number(process.env.MARKET_DELAY) || 400
 const STALE = 6 * 60 * 1000
+const AI_PARALLEL = 4
 const MIN_LISTINGS = 3
 const HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
@@ -128,7 +129,69 @@ const myauto = {
   },
 }
 
+const ai = {
+  name: 'AI',
+  url: process.env.GEMINI_URL || 'https://generativelanguage.googleapis.com/v1beta/models',
+  grounded: true,
+
+  enabled() {
+    return Boolean(process.env.GEMINI_API_KEY)
+  },
+
+  prompt(target) {
+    return [
+      `Find current used car listings for a ${target.year} ${target.make} ${target.model}.`,
+      'Look at turbo.az for Azerbaijan and myauto.ge for Georgia (other local listing sites of the same country are fine too).',
+      'For each country give the median asking price in US dollars (convert AZN or GEL to USD at today\'s rate) and how many listings you based it on.',
+      'Only count listings of exactly this model and year. If you cannot find real listings for a country, use null.',
+      'Answer with JSON only, no other text:',
+      '{"aze": {"price": number|null, "listings": number}, "geo": {"price": number|null, "listings": number}}',
+    ].join('\n')
+  },
+
+  async ask(target, grounded) {
+    const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash'
+    const body = {
+      contents: [{ parts: [{ text: this.prompt(target) }] }],
+      ...(grounded ? { tools: [{ google_search: {} }] } : {}),
+    }
+    const response = await fetch(`${this.url}/${model}:generateContent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(60000),
+    })
+    const result = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      const error = new Error(`Gemini cavabı: ${response.status} ${result.error?.message || ''}`.trim())
+      error.status = response.status
+      throw error
+    }
+    const text = (result.candidates?.[0]?.content?.parts || []).map((part) => part.text || '').join('')
+    const json = text.match(/\{[\s\S]*\}/)
+    if (!json) throw new Error('Gemini cavabı oxunmadı')
+    return JSON.parse(json[0])
+  },
+
+  async estimate(target) {
+    if (this.grounded) {
+      try {
+        return { ...(await this.ask(target, true)), grounded: true }
+      } catch (error) {
+        if (![400, 403, 429].includes(error.status)) throw error
+        this.grounded = false
+      }
+    }
+    return { ...(await this.ask(target, false)), grounded: false }
+  },
+}
+
 const sources = [turbo, myauto]
+
+function aiPrice(value) {
+  const price = Math.round(Number(value?.price))
+  return price >= 500 && price <= 1000000 ? price : 0
+}
 
 async function targets() {
   const rows = await query(
@@ -176,28 +239,71 @@ export async function syncMarketPrices() {
   const rates = { azn: Number(tariffs?.value?.aznRate) || 1.7 }
   const results = []
 
+  const saved = new Set()
+  const save = async (country, target, price, source) => {
+    await query(
+      `insert into market_prices (country, make, model, year, price, source) values ($1, $2, $3, $4, $5, $6)
+       on conflict (country, make, model, year)
+       do update set price = excluded.price, source = excluded.source, updated_at = now() returning id`,
+      [country, target.make, target.model, target.year, price, source],
+    )
+    saved.add(`${country}|${target.make}|${target.model}|${target.year}`)
+  }
+
   try {
+    const list = await targets()
+
     for (const source of sources) {
       source.makes = null
-      for (const target of await targets()) {
+      let blocked = ''
+      for (const target of list) {
         const result = { source: source.name, make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
         try {
+          if (blocked) throw new Error(blocked)
           const values = withoutOutliers(await source.prices(target, rates))
           result.count = values.length
           if (values.length < MIN_LISTINGS) throw new Error(`az elan var (${values.length})`)
 
           result.price = median(values)
-          await query(
-            `insert into market_prices (country, make, model, year, price, source) values ($1, $2, $3, $4, $5, $6)
-             on conflict (country, make, model, year)
-             do update set price = excluded.price, source = excluded.source, updated_at = now() returning id`,
-            [source.country, target.make, target.model, target.year, result.price, `${source.name} · ${values.length} elan`],
-          )
+          await save(source.country, target, result.price, `${source.name} · ${values.length} elan`)
         } catch (error) {
           result.error = error.message
+          if (!blocked && /cavabı: 40[13]|cavabı: 429|fetch failed|aborted|timeout/i.test(error.message)) blocked = `${source.name} bağlantını qəbul etmir (${error.message})`
         }
         results.push(result)
       }
+    }
+
+    if (ai.enabled()) {
+      ai.grounded = true
+      const pending = list.filter((target) => ['aze', 'geo'].some((country) => !saved.has(`${country}|${target.make}|${target.model}|${target.year}`)))
+      const runOne = async (target) => {
+        const missing = ['aze', 'geo'].filter((country) => !saved.has(`${country}|${target.make}|${target.model}|${target.year}`))
+        try {
+          const answer = await ai.estimate(target)
+          for (const country of missing) {
+            const label = country === 'aze' ? 'Azərbaycan' : 'Gürcüstan'
+            const result = { source: 'AI', make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: '' }
+            const price = aiPrice(answer[country])
+            const listings = Math.max(0, Math.round(Number(answer[country]?.listings) || 0))
+            result.count = listings
+            if (!price) result.error = `${label}: AI qiymət tapmadı`
+            else if (answer.grounded && listings < MIN_LISTINGS) result.error = `${label}: az elan var (${listings})`
+            else {
+              result.price = price
+              await save(country, target, price, answer.grounded ? `AI · Google axtarışı · ${listings} elan` : 'AI təxmini')
+            }
+            results.push(result)
+          }
+        } catch (error) {
+          results.push({ source: 'AI', make: target.make, model: target.model, year: target.year, count: 0, price: 0, error: error.message })
+        }
+      }
+      const queue = [...pending]
+      const worker = async () => {
+        while (queue.length) await runOne(queue.shift())
+      }
+      await Promise.all(Array.from({ length: AI_PARALLEL }, worker))
     }
   } finally {
     running = false

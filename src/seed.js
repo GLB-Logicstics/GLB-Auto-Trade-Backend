@@ -33,6 +33,19 @@ async function createAdmin(client) {
   )
 }
 
+async function addTranslations(client) {
+  for (const [key, values] of Object.entries(translations)) {
+    for (const [lang, value] of Object.entries(values)) {
+      await client.query(
+        `insert into translations (key, lang, value)
+         select $1, $2::text, $3 where exists (select 1 from languages where code = $2::text)
+         on conflict (key, lang) do nothing`,
+        [key, lang, value],
+      )
+    }
+  }
+}
+
 const client = await pool.connect()
 
 try {
@@ -44,6 +57,7 @@ try {
   await client.query(schema)
 
   if (ifEmpty && filled) {
+    await addTranslations(client)
     await createAdmin(client)
     await client.query('commit')
     console.log('Baza artıq doludur, yalnız cədvəllər yeniləndi')
@@ -84,15 +98,7 @@ try {
     )
   }
 
-  for (const [key, values] of Object.entries(translations)) {
-    for (const [lang, value] of Object.entries(values)) {
-      await client.query(
-        'insert into translations (key, lang, value) values ($1, $2, $3) on conflict (key, lang) do nothing',
-        [key, lang, value],
-      )
-    }
-  }
-
+  await addTranslations(client)
   await createAdmin(client)
 
   await client.query('commit')

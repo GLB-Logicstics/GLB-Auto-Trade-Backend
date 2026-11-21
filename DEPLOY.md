@@ -37,6 +37,8 @@ https://cloudinary.com → qeydiyyat → Dashboard-da **API environment variable
 | `TOKEN_SECRET` | uzun təsadüfi mətn |
 | `CLOUDINARY_URL` | Cloudinary sətri |
 | `CRON_SECRET` | uzun təsadüfi mətn (bazar qiymətləri üçün gündəlik iş) |
+| `GEMINI_API_KEY` | Google AI Studio açarı — bazar qiymətlərini AI ilə tapmaq üçün |
+| `GEMINI_MODEL` | istəyə bağlı, standart `gemini-3.5-flash` |
 | `CORS_ORIGINS` | sayt və admin linkləri, vergüllə (4-cü addımdan sonra yaz) |
 | `PUBLIC_URL` | backend-in öz linki |
 
